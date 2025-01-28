@@ -1,0 +1,561 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Paylands WooCommerce\n"
+"Report-Msgid-Bugs-To: https://paylands.com\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Loco-Version: 2.4.0; wp-5.3.4\n"
+
+msgid "Style Customization"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Configure the visual appearance of the Paylands card payment form using the following settings. Fields that are not indicated will take the default value."
+msgstr ""
+
+msgid "Title"
+msgstr ""
+
+msgid "Checkout title."
+msgstr ""
+
+msgid "Checkout logo URL."
+msgstr ""
+
+msgid "Background Color"
+msgstr ""
+
+msgid "Checkout background color."
+msgstr ""
+
+msgid "Accent Color"
+msgstr ""
+
+msgid "Checkout accent color."
+msgstr ""
+
+msgid "Text Color"
+msgstr ""
+
+msgid "Checkout text color."
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "Checkout text font."
+msgstr ""
+
+msgid "Default"
+msgstr ""
+
+msgid "Description"
+msgstr ""
+
+msgid "Checkout description."
+msgstr ""
+
+msgid "Footer Logo"
+msgstr ""
+
+msgid "Checkout footer logo URL."
+msgstr ""
+
+msgid "Terms and Conditions"
+msgstr ""
+
+msgid "Terms and conditions and/or privacy policy page URL."
+msgstr ""
+
+msgid "DEV mode active: "
+msgstr ""
+
+msgid "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce Paylands."
+msgstr ""
+
+msgid "Test mode is active: "
+msgstr ""
+
+msgid "Customers can't make real purchases through WooCommerce Paylands."
+msgstr ""
+
+msgid "Settings"
+msgstr ""
+
+msgid "Payment Form Language"
+msgstr ""
+
+msgid "Test mode"
+msgstr ""
+
+msgid "Your Paylands account is not ready yet."
+msgstr ""
+
+msgid "Start here to configure you account"
+msgstr ""
+
+msgid "Let's go"
+msgstr ""
+
+msgid "Log in"
+msgstr ""
+
+msgid "Your Paylands account is connected. We are validating your business."
+msgstr ""
+
+msgid "Business ID:"
+msgstr ""
+
+msgid "Name:"
+msgstr ""
+
+msgid "Email:"
+msgstr ""
+
+msgid "Contact:"
+msgstr ""
+
+msgid "Disconnect account"
+msgstr ""
+
+msgid "Thank you!"
+msgstr ""
+
+msgid "Start accepting payments with Woocommerce Paylands"
+msgstr ""
+
+msgid "Paylands is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers."
+msgstr ""
+
+msgid "No matter if your company is large or small, Paylands offers the most innovative payment tools and the best customer support."
+msgstr ""
+
+msgid "Create your account in just a few steps."
+msgstr ""
+
+msgid "Okay, let’s do this!"
+msgstr ""
+
+msgid "I already have an account"
+msgstr ""
+
+msgid "Log in with your Paylands account"
+msgstr ""
+
+msgid "If you don’t have an account, create one by registering your business"
+msgstr ""
+
+msgid "here"
+msgstr ""
+
+msgid "Your Paylands account is connected, and your business is validated. You can now start selling!"
+msgstr ""
+
+msgid "Your payment methods have been successfully configured for you to start selling. Review your payment methods and activate the ones you wish to use on the website."
+msgstr ""
+
+msgid "View payment methods"
+msgstr ""
+
+msgid "Our payment gateway integrates the most used payment methods."
+msgstr ""
+
+msgid "Get to know us at"
+msgstr ""
+
+msgid "How does it work?"
+msgstr ""
+
+msgid "Create and connect your account"
+msgstr ""
+
+msgid "The first step is to create your Paylands account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account."
+msgstr ""
+
+msgid "We validate your business"
+msgstr ""
+
+msgid "Once you connect your account with the login details we’ve sent by email, we will validate your business information. From here, you can check the status of the validation process."
+msgstr ""
+
+msgid "Start selling"
+msgstr ""
+
+msgid "Once your account is validated, all you need to do is choose which payment methods you want to use in your store, and you can start selling."
+msgstr ""
+
+msgid "Please, provide a username"
+msgstr ""
+
+msgid "Please, provide a password"
+msgstr ""
+
+msgid "Are you sure you want to disconnect the account? Plugin settings will be reset, and payment methods will no longer be available."
+msgstr ""
+
+msgid "Account connected!"
+msgstr ""
+
+msgid "Invalid request parameters"
+msgstr ""
+
+msgid "Missing data"
+msgstr ""
+
+msgid "We are waiting for you to send your documentation."
+msgstr ""
+
+msgid "Check the email we sent you after registration with instructions on how to access your private area and upload all the documentation needed to complete your registration."
+msgstr ""
+
+msgid "For any questions, please contact your Account Manager."
+msgstr ""
+
+msgid "We are validating your business"
+msgstr ""
+
+msgid "You will soon receive an email notifying you of the status of your business so you can start selling as soon as possible."
+msgstr ""
+
+msgid "If we need additional information, we will let you know."
+msgstr ""
+
+msgid "Paylands trying to disconnect a non existing account"
+msgstr ""
+
+msgid "Need help? Contact support %s"
+msgstr ""
+
+msgid "Payment methods"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "No active payment methods found."
+msgstr ""
+
+msgid "<a href=\"%s\">Access</a> to connect your Paylands account and view available payment methods."
+msgstr ""
+
+msgid "You can manually enter your keys below."
+msgstr ""
+
+msgid "These are the payment methods available for your store."
+msgstr ""
+
+msgid "To receive payments from a service in your store, you must activate it using the Configure button."
+msgstr ""
+
+msgid "Active methods are the ones that will appear as available in the store checkout."
+msgstr ""
+
+msgid "Configure"
+msgstr ""
+
+msgid "Payment methods for test payments"
+msgstr ""
+
+msgid "Payment methods for real payments"
+msgstr ""
+
+msgid "Request a new payment method"
+msgstr ""
+
+msgid "If you need it, you can <a href=\"#\" id=\"paylands-new-service-open\">request a new payment method</a>"
+msgstr ""
+
+msgid "Enter the name and type of payment method you want to request from the available options."
+msgstr ""
+
+msgid "Request"
+msgstr ""
+
+msgid "Close"
+msgstr ""
+
+msgid "Active"
+msgstr ""
+
+msgid "No payment methods available"
+msgstr ""
+
+msgid "No, thanks"
+msgstr ""
+
+msgid "Request sent"
+msgstr ""
+
+msgid "Failed to send request"
+msgstr ""
+
+msgid "Save changes"
+msgstr ""
+
+msgid "Activate test mode"
+msgstr ""
+
+msgid "Select the language for the Paylands payment form."
+msgstr ""
+
+msgid "English"
+msgstr ""
+
+msgid "Spanish"
+msgstr ""
+
+msgid "Your account is connected. Review your payment methods below."
+msgstr ""
+
+msgid "An error has occurred, please try again in a few minutes. If the error persists, please contact Paylands."
+msgstr ""
+
+msgid "Payment method name"
+msgstr ""
+
+msgid "Payment method type"
+msgstr ""
+
+msgid "Card by Paynopain - Europe"
+msgstr ""
+
+msgid "Bizum - Europe"
+msgstr ""
+
+msgid "GooglePay"
+msgstr ""
+
+msgid "Applepay"
+msgstr ""
+
+msgid "Ideal payments - Netherlands"
+msgstr ""
+
+msgid "Sofort payments - Europe"
+msgstr ""
+
+msgid "Klarna payments - Europe"
+msgstr ""
+
+msgid "Giropay payments - Germany"
+msgstr ""
+
+msgid "Bank transfer - Europe"
+msgstr ""
+
+msgid "COFIDIS - Spain"
+msgstr ""
+
+msgid "FLOA - Europe"
+msgstr ""
+
+msgid "Cryptocurrency payments"
+msgstr ""
+
+msgid "PSE payments - Colombia"
+msgstr ""
+
+msgid "PayPal payments"
+msgstr ""
+
+msgid "This payment method is not available for test payments. You can request it using the link below."
+msgstr ""
+
+msgid "This method is available for test payments"
+msgstr ""
+
+msgid "This payment method is not available for real payments. You can request it using the link below."
+msgstr ""
+
+msgid "This method is available for real payments"
+msgstr ""
+
+msgid "Simulate transactions using"
+msgstr ""
+
+msgid "test payment data"
+msgstr ""
+
+msgid "If test mode is active, customers will NOT be able to make real payments through Woocommerce Paylands."
+msgstr ""
+
+msgid "You must save for the change to take effect."
+msgstr ""
+
+msgid "Your Paylands account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
+msgstr ""
+
+msgid "When you <a href=\"%s\">log in</a> and connect your Paylands account, the advanced settings are automatically filled in. If you want to view them, you can do so by clicking <span class=\"collapsible-link\">here</span>."
+msgstr ""
+
+msgid "General Settings"
+msgstr ""
+
+msgid "Test Mode"
+msgstr ""
+
+msgid "Enable test mode"
+msgstr ""
+
+msgid "Select the language to be used in the Paylands payment form."
+msgstr ""
+
+msgid "Advanced Settings"
+msgstr ""
+
+msgid "Live API Key"
+msgstr ""
+
+msgid "Your User API Key for live payments."
+msgstr ""
+
+msgid "Live Signature Key"
+msgstr ""
+
+msgid "Your User Signature Key for live payments."
+msgstr ""
+
+msgid "Live Checkout UUID"
+msgstr ""
+
+msgid "Your Checkout UUID for live payments."
+msgstr ""
+
+msgid "Test API Key"
+msgstr ""
+
+msgid "Your User API Key for test payments."
+msgstr ""
+
+msgid "Test Signature Key"
+msgstr ""
+
+msgid "Your User Signature Key for test payments."
+msgstr ""
+
+msgid "Test Checkout UUID"
+msgstr ""
+
+msgid "Your Checkout UUID for test payments."
+msgstr ""
+
+msgid "URL of the image that the customer will see when selecting the payment method on the checkout page (optional). If not specified, the default image will appear."
+msgstr ""
+
+msgid "Upload new image"
+msgstr ""
+
+msgid "Open Media Library"
+msgstr ""
+
+msgid "Enable/Disable"
+msgstr ""
+
+msgid "Activate"
+msgstr ""
+
+msgid "Return to Paylands"
+msgstr ""
+
+msgid "Return to payments"
+msgstr ""
+
+msgid "If the method is marked as active, it will appear as a payment option on the checkout page."
+msgstr ""
+
+msgid "The title the customer will see when selecting the payment method on the checkout page."
+msgstr ""
+
+msgid "The description that the customer will see when selecting the payment method on the checkout page (optional)."
+msgstr ""
+
+msgid "Logo"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Estado final del pedido"
+msgstr ""
+
+msgid "Set the status in which the order should be when the customer makes a successful payment using this method."
+msgstr ""
+
+msgid "Default order status"
+msgstr ""
+
+msgid "Secure Payment"
+msgstr ""
+
+msgid "Enable Secure Payment"
+msgstr ""
+
+msgid "Enable this option if the payment will require 3D Secure"
+msgstr ""
+
+msgid "Service UUID"
+msgstr ""
+
+msgid "Your service UUID for payments."
+msgstr ""
+
+msgid "Invalid business_id"
+msgstr ""
+
+msgid "Invalid token"
+msgstr ""
+
+msgid "Incorrect username or password"
+msgstr ""
+
+msgid "Your account is not active. Please check your email inbox and confirm your email."
+msgstr ""
+
+msgid "Payland Charge Completed"
+msgstr ""
+
+msgid "Payment Refused by merchant"
+msgstr ""
+
+msgid "Payment Error"
+msgstr ""
+
+msgid "Payment Blacklisted"
+msgstr ""
+
+msgid "Payment Cancelled"
+msgstr ""
+
+msgid "Payment Expired"
+msgstr ""
+
+msgid "Payment Fraud"
+msgstr ""
+
+msgid "Payment Partially Refunded"
+msgstr ""
+
+msgid "Payment Pending of confirmation"
+msgstr ""
+
+msgid "Payment Refunded"
+msgstr ""
+
+msgid "Payment Pending Processor Response"
+msgstr ""
+
+msgid "Payment Pending 3DS Response"
+msgstr ""
+
+msgid "Payment Pending Card"
+msgstr ""

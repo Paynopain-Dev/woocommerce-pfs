@@ -1,0 +1,8 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+ #add_payment_method #payment ul.payment_methods li img, .woocommerce-cart #payment ul.payment_methods li img, .woocommerce-checkout #payment ul.payment_methods li img {
+  height: 30px;
+}

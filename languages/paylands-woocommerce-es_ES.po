@@ -1,0 +1,561 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Paylands WooCommerce\n"
+"Report-Msgid-Bugs-To: https://paylands.com\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: Español\n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.5\n"
+"X-Loco-Version: 2.4.0; wp-5.3.4\n"
+
+msgid "Style Customization"
+msgstr "Personalización del estilo"
+
+msgid "Style"
+msgstr "Personalización"
+
+msgid "Configure the visual appearance of the Paylands card payment form using the following settings. Fields that are not indicated will take the default value."
+msgstr "Configura el aspecto visual del formulario para pagos con tarjeta de Paylands utilizando los siguientes ajustes. Los campos que no se indiquen tomarán el valor por defecto."
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Checkout title."
+msgstr "Título del checkout."
+
+msgid "Checkout logo URL."
+msgstr "URL del logo del checkout."
+
+msgid "Background Color"
+msgstr "Color de Fondo"
+
+msgid "Checkout background color."
+msgstr "Color de fondo del checkout."
+
+msgid "Accent Color"
+msgstr "Color de Acento"
+
+msgid "Checkout accent color."
+msgstr "Color complementario del checkout."
+
+msgid "Text Color"
+msgstr "Color del Texto"
+
+msgid "Checkout text color."
+msgstr "Color de texto del checkout."
+
+msgid "Font"
+msgstr "Fuente"
+
+msgid "Checkout text font."
+msgstr "Fuente de texto del checkout."
+
+msgid "Default"
+msgstr "Por defecto"
+
+msgid "Description"
+msgstr "Descripción"
+
+msgid "Checkout description."
+msgstr "Resumen del checkout."
+
+msgid "Footer Logo"
+msgstr "Logo del Pie de Página"
+
+msgid "Checkout footer logo URL."
+msgstr "URL del logo para el pie de página del checkout."
+
+msgid "Terms and Conditions"
+msgstr "Términos y Condiciones"
+
+msgid "Terms and conditions and/or privacy policy page URL."
+msgstr "URL de la página de términos y condiciones y/o política de privacidad."
+
+msgid "DEV mode active: "
+msgstr "Modo desarrollador está activo: "
+
+msgid "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce Paylands."
+msgstr "El proceso de onboarding y todas las trasacciones son simuladas. Los clientes no pueden hacer comprar reales a través de WooCommerce Paylands."
+
+msgid "Test mode is active: "
+msgstr "El modo pruebas está activo: "
+
+msgid "Customers can't make real purchases through WooCommerce Paylands."
+msgstr "Los clientes no pueden hacer compras reales a través de WooCommerce Paylands."
+
+msgid "Settings"
+msgstr "Ajustes"
+
+msgid "Payment Form Language"
+msgstr "Idioma del formulario de pago"
+
+msgid "Test mode"
+msgstr "Modo de pruebas"
+
+msgid "Your Paylands account is not ready yet."
+msgstr "Tu cuenta de Paylands no está conectada aún."
+
+msgid "Start here to configure you account"
+msgstr "Empieza aquí para configurar tu cuenta"
+
+msgid "Let's go"
+msgstr "Vamos"
+
+msgid "Log in"
+msgstr "Acceder"
+
+msgid "Your Paylands account is connected. We are validating your business."
+msgstr "Tu cuenta de Paylands está conectada. Estamos validando tu comercio."
+
+msgid "Business ID:"
+msgstr "Id de comercio:"
+
+msgid "Name:"
+msgstr "Nombre:"
+
+msgid "Email:"
+msgstr "Email:"
+
+msgid "Contact:"
+msgstr "Contacto:"
+
+msgid "Disconnect account"
+msgstr "Desconectar cuenta"
+
+msgid "Thank you!"
+msgstr "¡Gracias!"
+
+msgid "Start accepting payments with Woocommerce Paylands"
+msgstr "Empieza a cobrar con Woocommerce Paylands"
+
+msgid "Paylands is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers."
+msgstr "Paylands es la pasarela de pago perfecta para tiendas online eCommerce que necesiten cobrar a sus clientes con total seguridad y comodidad."
+
+msgid "No matter if your company is large or small, Paylands offers the most innovative payment tools and the best customer support."
+msgstr "No importa si tu empresa es grande o pequeña, en Paylands encontrarás las herramientas de cobro más innovadoras y la mejor atención al cliente."
+
+msgid "Create your account in just a few steps."
+msgstr "Crea tu cuenta en unos pocos pasos."
+
+msgid "Okay, let’s do this!"
+msgstr "¡Ok, vamos a ello!"
+
+msgid "I already have an account"
+msgstr "Ya tengo cuenta"
+
+msgid "Log in with your Paylands account"
+msgstr "Accede con tu cuenta de Paylands"
+
+msgid "If you don’t have an account, create one by registering your business"
+msgstr "Si no tienes cuenta, debes crearla registrando tu comercio"
+
+msgid "here"
+msgstr "aquí"
+
+msgid "Your Paylands account is connected, and your business is validated. You can now start selling!"
+msgstr "Tu cuenta de Paylands está conectada y tu comercio validado. ¡Ya puedes empezar a vender!"
+
+msgid "Your payment methods have been successfully configured for you to start selling. Review your payment methods and activate the ones you wish to use on the website."
+msgstr "Tus métodos de pago se han configurado correctamente para empezar a vender. Revisa tus métodos de pago y activa los que quieras utilizar en la web."
+
+msgid "View payment methods"
+msgstr "Ver métodos de pago"
+
+msgid "Our payment gateway integrates the most used payment methods."
+msgstr "Nuestra pasarela de pago integra los métodos de pago más utilizados."
+
+msgid "Get to know us at"
+msgstr "Conócenos en"
+
+msgid "How does it work?"
+msgstr "¿Cómo funciona?"
+
+msgid "Create and connect your account"
+msgstr "Crea y conecta tu cuenta"
+
+msgid "The first step is to create your Paylands account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account."
+msgstr "El primer paso es crear tu cuenta de Paylands. Se te abrirá un formulario donde deberás rellenar los datos relevantes de tu empresa para que la validemos. En seguida recibirás un email con el acceso a tu cuenta."
+
+msgid "We validate your business"
+msgstr "Válidamos tu comercio"
+
+msgid "Once you connect your account with the login details we’ve sent by email, we will validate your business information. From here, you can check the status of the validation process."
+msgstr "Una vez conectes tu cuenta con los datos de acceso que te hemos enviado por email, validaremos los datos de tu comercio. Desde aquí podrás ver el estado del proceso de validación."
+
+msgid "Start selling"
+msgstr "Empieza a vender"
+
+msgid "Once your account is validated, all you need to do is choose which payment methods you want to use in your store, and you can start selling."
+msgstr "Una vez validada tu cuenta, solo necesitas elegir que métodos de pago de los que tienes activos, deseas utilizar en la tienda y ya podrás empezar a vender."
+
+msgid "Please, provide a username"
+msgstr "Por favor, introduce un usuario"
+
+msgid "Please, provide a password"
+msgstr "Por favor, introduce una contraseña"
+
+msgid "Are you sure you want to disconnect the account? Plugin settings will be reset, and payment methods will no longer be available."
+msgstr "¿Estas seguro que quieres desconectar la cuenta? Los ajustes del plugin se resetearán y los medios de pago dejarán de estar disponibles."
+
+msgid "Account connected!"
+msgstr "¡Cuenta conectada!"
+
+msgid "Invalid request parameters"
+msgstr "Parámetros de solicitud no válidos"
+
+msgid "Missing data"
+msgstr "Faltan datos"
+
+msgid "We are waiting for you to send your documentation."
+msgstr "Estamos pendientes de que nos envíes tu documentación."
+
+msgid "Check the email we sent you after registration with instructions on how to access your private area and upload all the documentation needed to complete your registration."
+msgstr "Revisa el email que te enviamos después del registro donde te indicábamos los pasos que debes seguir para ingresar en tu área privada y cargar toda la documentación que necesitamos para finalizar tu alta."
+
+msgid "For any questions, please contact your Account Manager."
+msgstr "Para cualquier duda, puedes contactar con tu Account Manager."
+
+msgid "We are validating your business"
+msgstr "Estamos validando tu comercio"
+
+msgid "You will soon receive an email notifying you of the status of your business so you can start selling as soon as possible."
+msgstr "En breve recibirás un email notificándote del estado de tu comercio para que puedas empezar a vender cuanto antes."
+
+msgid "If we need additional information, we will let you know."
+msgstr "Si necesitamos alguna información adicional, te lo haremos saber."
+
+msgid "Paylands trying to disconnect a non existing account"
+msgstr "Paylands tratando de desconectar una cuenta inexistente"
+
+msgid "Need help? Contact support %s"
+msgstr "¿Necesitas ayuda? Contacta con soporte %s"
+
+msgid "Payment methods"
+msgstr "Métodos de pago"
+
+msgid "Home"
+msgstr "Inicio"
+
+msgid "No active payment methods found."
+msgstr "No se han encontrado métodos de pago activos."
+
+msgid "<a href=\"%s\">Access</a> to connect your Paylands account and view available payment methods."
+msgstr "<a href=\"%s\">Accede</a> para conectar tu cuenta de Paylands y poder consultar los métodos de pago disponibles."
+
+msgid "You can manually enter your keys below."
+msgstr "Si eres un usuario avanzado puedes introducir tus keys manualmente más abajo."
+
+msgid "These are the payment methods available for your store."
+msgstr "Estos son los métodos de pago disponibles para tu comercio."
+
+msgid "To receive payments from a service in your store, you must activate it using the Configure button."
+msgstr "Para poder recibir pagos desde un servicio en tu tienda, debes activarlo desde el botón Configurar."
+
+msgid "Active methods are the ones that will appear as available in the store checkout."
+msgstr "Los métodos activos son los que aparecerán como disponibles en el checkout de la tienda."
+
+msgid "Configure"
+msgstr "Configurar"
+
+msgid "Payment methods for test payments"
+msgstr "Métodos para pagos de prueba"
+
+msgid "Payment methods for real payments"
+msgstr "Métodos para pagos reales"
+
+msgid "Request a new payment method"
+msgstr "Solicitar nuevo método de pago"
+
+msgid "If you need it, you can <a href=\"#\" id=\"paylands-new-service-open\">request a new payment method</a>"
+msgstr "Si lo necesitas, puedes <a href=\"#\" id=\"paylands-new-service-open\">solicitar un nuevo método de pago</a>"
+
+msgid "Enter the name and type of payment method you want to request from the available options."
+msgstr "Indica el nombre y el tipo de método de pago que deseas solicitar de entre los disponibles."
+
+msgid "Request"
+msgstr "Solicitar"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Active"
+msgstr "Activado"
+
+msgid "No payment methods available"
+msgstr "No hay métodos de pago disponibles"
+
+msgid "No, thanks"
+msgstr "No, gracias"
+
+msgid "Request sent"
+msgstr "Solicitud enviada"
+
+msgid "Failed to send request"
+msgstr "No se ha podido enviar la solicitud"
+
+msgid "Save changes"
+msgstr "Guardar cambios"
+
+msgid "Activate test mode"
+msgstr "Activar el modo de pruebas"
+
+msgid "Select the language for the Paylands payment form."
+msgstr "Selecciona el idioma que se usará en el formulario de pago de Paylands."
+
+msgid "English"
+msgstr "Inglés"
+
+msgid "Spanish"
+msgstr "Español"
+
+msgid "Your account is connected. Review your payment methods below."
+msgstr "Tu cuenta está conectada. Revisa tus métodos de pago a continuación."
+
+msgid "An error has occurred, please try again in a few minutes. If the error persists, please contact Paylands."
+msgstr "Ha ocurrido un error, por favor inténtalo de nuevo más tarde. Si el error persiste, contacta con Paylands."
+
+msgid "Payment method name"
+msgstr "Nombre del método"
+
+msgid "Payment method type"
+msgstr "Tipo de método de pago"
+
+msgid "Card by Paynopain - Europe"
+msgstr "Tarjeta by Paynopain - Europa"
+
+msgid "Bizum - Europe"
+msgstr "Bizum - Europa"
+
+msgid "GooglePay"
+msgstr "GooglePay"
+
+msgid "Applepay"
+msgstr "ApplePay"
+
+msgid "Ideal payments - Netherlands"
+msgstr "Ideal payments - Países bajos"
+
+msgid "Sofort payments - Europe"
+msgstr "Sofort payments - Europa"
+
+msgid "Klarna payments - Europe"
+msgstr "Klarna payments - Europa"
+
+msgid "Giropay payments - Germany"
+msgstr "Giropay payments - Alemania"
+
+msgid "Bank transfer - Europe"
+msgstr "Bank transfer - Europa"
+
+msgid "COFIDIS - Spain"
+msgstr "COFIDIS - España"
+
+msgid "FLOA - Europe"
+msgstr "FLOA - Europa"
+
+msgid "Cryptocurrency payments"
+msgstr "Cryptocurrency payments"
+
+msgid "PSE payments - Colombia"
+msgstr "PSE payments - Colombia"
+
+msgid "PayPal payments"
+msgstr "PayPal payments"
+
+msgid "This payment method is not available for test payments. You can request it using the link below."
+msgstr "No tienes disponible este método para pagos de prueba. Puedes solicitarlo en el enlace de abajo."
+
+msgid "This method is available for test payments"
+msgstr "Este método está disponible para pagos de prueba"
+
+msgid "This payment method is not available for real payments. You can request it using the link below."
+msgstr "No tienes disponible este método para pagos reales. Puedes solicitarlo en el enlace de abajo."
+
+msgid "This method is available for real payments"
+msgstr "Este método está disponible para pagos reales"
+
+msgid "Simulate transactions using"
+msgstr "Simula transacciones utilizando"
+
+msgid "test payment data"
+msgstr "datos de pago de prueba"
+
+msgid "If test mode is active, customers will NOT be able to make real payments through Woocommerce Paylands."
+msgstr "Si el modo de pruebas está activo, los clientes NO podrán realizar pagos reales a través de Woocommerce Paylands."
+
+msgid "You must save for the change to take effect."
+msgstr "Debes guardar para que el cambio tenga efecto."
+
+msgid "Your Paylands account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
+msgstr "Tu cuenta de Paylands está conectada y la configuración avanzada se ha rellenado automáticamente. Si quieres verla puedes hacerlo pulsando <span class=\"collapsible-link\">aquí</span>."
+
+msgid "When you <a href=\"%s\">log in</a> and connect your Paylands account, the advanced settings are automatically filled in. If you want to view them, you can do so by clicking <span class=\"collapsible-link\">here</span>."
+msgstr "Al <a href=\"%s\">acceder</a> y conectar tu cuenta de Paylands las configuración avanzada se rellena automáticamente. Si quieres verla puedes hacerlo pulsando <span class=\"collapsible-link\">aquí</span>."
+
+msgid "General Settings"
+msgstr "Configuración general"
+
+msgid "Test Mode"
+msgstr "Modo de pruebas"
+
+msgid "Enable test mode"
+msgstr "Activar el modo de pruebas"
+
+msgid "Select the language to be used in the Paylands payment form."
+msgstr "Selecciona el idioma que se usará en el formulario de pago de Paylands."
+
+msgid "Advanced Settings"
+msgstr "Configuración avanzada"
+
+msgid "Live API Key"
+msgstr "Live API Key"
+
+msgid "Your User API Key for live payments."
+msgstr "Tu User Api Key para pagos reales."
+
+msgid "Live Signature Key"
+msgstr "Live Signature Key"
+
+msgid "Your User Signature Key for live payments."
+msgstr "Tu User Signature Key para pagos reales."
+
+msgid "Live Checkout UUID"
+msgstr "Live Checkout UUID"
+
+msgid "Your Checkout UUID for live payments."
+msgstr "Tu Checkout UUID para pagos reales."
+
+msgid "Test API Key"
+msgstr "Test API Key"
+
+msgid "Your User API Key for test payments."
+msgstr "Tu User Api Key para pagos de pruebas."
+
+msgid "Test Signature Key"
+msgstr "Test Signature Key"
+
+msgid "Your User Signature Key for test payments."
+msgstr "Tu User Signature Key para pagos de pruebas."
+
+msgid "Test Checkout UUID"
+msgstr "Test Checkout UUID"
+
+msgid "Your Checkout UUID for test payments."
+msgstr "Tu Checkout UUID para pagos de pruebas."
+
+msgid "URL of the image that the customer will see when selecting the payment method on the checkout page (optional). If not specified, the default image will appear."
+msgstr "URL de la imagen que el cliente verá a la hora de seleccionar el método de pago en la página de checkout (opcional). Sino se indica aparecerá la imagen por defecto."
+
+msgid "Upload new image"
+msgstr "Subir nueva imagen"
+
+msgid "Open Media Library"
+msgstr "Abrir la Biblioteca de Medios"
+
+msgid "Enable/Disable"
+msgstr "Activar/Desactivar"
+
+msgid "Activate"
+msgstr "Activar"
+
+msgid "Return to Paylands"
+msgstr "Volver a Paylands"
+
+msgid "Return to payments"
+msgstr "Volver a pagos"
+
+msgid "If the method is marked as active, it will appear as a payment option on the checkout page."
+msgstr "Si el método está marcado como activo aparecerá como opción de pago en la página de checkout."
+
+msgid "The title the customer will see when selecting the payment method on the checkout page."
+msgstr "El título que el cliente verá a la hora de seleccionar el método de pago en la página de checkout."
+
+msgid "The description that the customer will see when selecting the payment method on the checkout page (optional)."
+msgstr "La descripción que el cliente verá a la hora de seleccionar el método de pago en la página de checkout (opcional)."
+
+msgid "Logo"
+msgstr "Logo"
+
+msgid "Password"
+msgstr "Contraseña"
+
+msgid "Estado final del pedido"
+msgstr "Final order status"
+
+msgid "Set the status in which the order should be when the customer makes a successful payment using this method."
+msgstr "Establece en que estado debe quedar el pedido cuando el cliente realiza un pago exitoso a través de este método."
+
+msgid "Default order status"
+msgstr "Estado por defecto"
+
+msgid "Secure Payment"
+msgstr "Pago seguro"
+
+msgid "Enable Secure Payment"
+msgstr "Activar pago seguro"
+
+msgid "Enable this option if the payment will require 3D Secure"
+msgstr "Activa esta opción si el pago requerirá 3D Secure"
+
+msgid "Service UUID"
+msgstr "UUID de servicio"
+
+msgid "Your service UUID for payments."
+msgstr "Tu UUID de servicio para pagos."
+
+msgid "Invalid business_id"
+msgstr "Comercio no válido"
+
+msgid "Invalid token"
+msgstr "Token no válido"
+
+msgid "Incorrect username or password"
+msgstr "Usuario o contraseña incorrectos"
+
+msgid "Your account is not active. Please check your email inbox and confirm your email."
+msgstr "Tu cuenta no está activa. Revisa tu bandeja de entrada y confirma tu email."
+
+msgid "Payland Charge Completed"
+msgstr "Pago completado por Paylands"
+
+msgid "Payment Refused by merchant"
+msgstr "Pago rechazado por el comerciante"
+
+msgid "Payment Error"
+msgstr "Error de pago"
+
+msgid "Payment Blacklisted"
+msgstr "Pago en lista negra"
+
+msgid "Payment Cancelled"
+msgstr "Pago cancelado"
+
+msgid "Payment Expired"
+msgstr "Pago expirado"
+
+msgid "Payment Fraud"
+msgstr "Fraude en el pago"
+
+msgid "Payment Partially Refunded"
+msgstr "Pago parcialmente reembolsado"
+
+msgid "Payment Pending of confirmation"
+msgstr "Pago pendiente de confirmación"
+
+msgid "Payment Refunded"
+msgstr "Pago reembolsado"
+
+msgid "Payment Pending Processor Response"
+msgstr "Pago pendiente de respuesta del procesador"
+
+msgid "Payment Pending 3DS Response"
+msgstr "Pago pendiente de respuesta 3DS"
+
+msgid "Payment Pending Card"
+msgstr "Pago pendiente de tarjeta"

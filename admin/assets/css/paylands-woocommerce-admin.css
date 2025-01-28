@@ -1,0 +1,519 @@
+/**
+ * All of the CSS for your admin-specific functionality should be
+ * included in this file.
+ */
+
+.button-primary.woocommerce-save-button {
+  appearance: button;
+  text-decoration: none;
+  color: white;
+  background-color: #ee1b4e;
+  border-color: #ee1b4e;
+  font-weight: 500  ;
+  border-radius: 40px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 11px 24px; 
+  display: inline-block;
+}
+.button-primary.woocommerce-save-button:hover {
+  appearance: button;
+  text-decoration: none;
+  color: white;
+  background-color: #ee1b4e;
+  border-color: #ee1b4e;
+  font-weight: 500  ;
+  border-radius: 40px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 11px 24px; 
+  opacity: 0.9;
+}
+
+#wc-paylands-get-started-container {
+  /*background-color: rgb(255, 255, 255);*/
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  max-width: 720px;
+  margin: 40px auto;
+  display: grid;
+  background-size: cover;
+  background-image: url('/wp-content/plugins/woocommerce-paylands/admin/assets/images/Path-2@3x-1.svg');
+}
+
+#wc-paylands-get-started-body {
+  max-width: 720px;
+  padding: 24px;
+}
+
+#wc-paylands-get-started {
+  margin: 20px 0 0;
+}
+#wc-paylands-methods {
+  margin: 20px 0 0;
+  padding: 20px 0 50px;
+  border-top: 1px solid #efefef;
+}
+#wc-paylands-methods-logos {
+  display: flex;
+  flex-wrap: wrap;
+}
+#wc-paylands-methods-logos img {
+  width: 70px; 
+}
+
+.wc-paylands-small-text {
+  font-size: 11px;
+  color: #757575;
+}
+.wc-paylands-footer-small-link {
+  font-size: 11px;
+  color: #757575;
+  text-align: right;
+}
+
+#wc-paylands-create-account {
+  margin: 20px 0 0;
+}
+#wc-paylands-connect-account {
+  margin: 20px 0 0;
+}
+
+#get-starged-image {
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+
+.paylands-cols {
+  display: flex;
+}
+
+.wc-paylands-buttons {
+  margin: 20px 0;
+}
+
+#paylands-login-info {
+  background-color: #efefef;
+  padding: 15px 20px;
+  margin: 10px 0 20px;
+}
+#wc-paylands-disconnect-button {
+  font-size: 11px;
+}
+.paylands-login-row {
+  color: #000;
+  margin: 0 0 5px;
+  display: block;
+}
+.paylands-login-row label {
+  width: 120px;
+  display: inline-block;
+}
+#wc-paylands-login-form-container {
+  background-color: #fde8ed;
+  padding: 15px 24px;
+  margin: 30px 0;
+}
+.wc-paylands-form-row {
+  margin: 10px 0;
+}
+
+.wc-paylands-form-row label {
+  width: 100px;
+  display: inline-block;
+}
+.wc-paylands-form-row input {
+  width: 200px;
+}
+
+#wc-paylands-get-started-container a.wc-paylands-button {
+  appearance: button;
+  text-decoration: none;
+  color: white;
+  background-color: #ee1b4e;
+  border-color: #ee1b4e;
+  font-weight: 500  ;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 11px 24px; 
+  display: inline-block;
+  margin-top: 10px;
+}
+#wc-paylands-get-started-container a.wc-paylands-button:hover {
+  opacity: 0.9;
+}
+
+#wc-paylands-get-started-container a.wc-paylands-button-secondary {
+  background-color: #fff;
+  border-color: #ee1b4e;
+  color: #ee1b4e;
+}
+
+#wc-paylands-get-started-container a.wc-paylands-button-secondary:hover {
+  opacity: 0.8;
+}
+
+#wc-paylands-get-started-container a {
+  color: #ee1b4e;
+}
+.wc-paylands-check {
+  font-size: 14px;
+}
+.wc-paylands-section-image {
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+.paylands-col-text {
+  width: 60%;
+}
+.paylands-col-image {
+  width: 40%;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+.wc-paylands-main-title {
+  line-height: 28px;
+}
+#woocommerce-paylands-settings-container {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  max-width: 720px;
+  margin: 40px auto;
+  padding: 20px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('/wp-content/plugins/woocommerce-paylands/admin/assets/images/Path-2@3x-1.svg');
+}
+#woocommerce-paylands-settings-container a {
+  color: #ee1b4e;
+}
+
+#woocommerce-paylands-settings-container .upload-help-links {
+  font-size: 12px;
+}
+#woocommerce-paylands-settings-container .upload-help-links span {
+  margin-right: 10px;
+}
+
+#wc-paylands-onboarding-how {
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px;
+  max-width: 720px;
+  margin: 40px auto;
+  /*background-color: #fff;*/
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url('/wp-content/plugins/woocommerce-paylands/admin/assets/images/Path-2@3x-1.svg');
+}
+#wc-paylands-onboarding-how-header {
+  padding: 10px 24px; 
+  border-bottom: 1px solid #efefef;
+}
+#wc-paylands-onboarding-how-header h2 {
+  font-size: 20px;
+}
+#wc-paylands-onboarding-steps {
+  display: flex;
+  justify-content: space-between;
+}
+.wc-paylands-loading-button {
+  background-image: url('/wp-content/plugins/woocommerce-paylands/admin/assets/images/loading.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  color: transparent !important; 
+  opacity: 0.8;
+}
+
+.wc-paylands-step {
+  padding: 24px;
+  border-right: 1px solid #efefef;
+  width: 33%;
+}
+.wc-paylands-step:last-child {
+  border-right: 0;
+}
+.wc-paylands-step-num {
+  background-color: #efefef;
+  color:  #ee1b4e;
+  padding: 10px 16px;
+  border-radius: 100px;
+  display: inline-block;
+  font-weight: bold;
+}
+.wc-paylands-step-num.active {
+  background-color: #f8a3b8;
+  color: #fff;
+}
+
+#wc-paylands-settings-menu {
+  margin: 30px 0 40px;
+}
+#wc-paylands-settings-menu a {
+  color: #ee1b4e;
+  text-decoration: underline;
+}
+#wc-paylands-settings-menu a.selected {
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
+
+#wc-paylands-service-list {
+  width: 100%;
+  margin: 20px 0 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+}
+
+#wc-paylands-extra-service-list {
+  width: 100%;
+  margin: 20px 0 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .1);
+}
+
+.wc-paylands-extra-service-image {
+  margin: 0 35px;
+}
+
+#wc-paylands-extra-service-list .wc-paylands-service-status {
+  margin-left: 5px;
+}
+
+.wc-paylands-service {   
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-top: 1px solid #efefef;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  margin: 0;
+}
+.wc-paylands-service:last-child {
+  border-bottom: 1px solid #efefef;
+}
+.wc-paylands-service.disabled .wc-paylands-service-name {
+  color: #aaa;
+}
+
+.wc-paylands-service-image {
+  width: 20%;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+.wc-paylands-service-image img { 
+  width: 60%; 
+  display: block; 
+}
+.wc-paylands-service-content {
+  width: 55%;
+  padding: 10px 0;
+}
+.wc-paylands-service-name {
+  margin: 10px 0;
+}
+.wc-paylands-service-type {
+  background-color: #efefef;
+  padding: 2px 5px;
+  font-size: 11px;
+}
+.wc-paylands-service-desc {
+  color: #666;
+  font-size: 12px;
+}
+.wc-paylands-service-action {
+  width: 25%;
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+}
+#wc-paylands-get-started-container .wc-paylands-service-action a.wc-paylands-button {
+  padding: 8px 15px;
+}
+#paylands-new-service {
+  background-color: #efefef;
+  padding: 10px 20px;
+  display: none;
+}
+#paylands-new-service-close {
+  margin: 0 0 0 20px;
+}
+#paylands-new-service-container {
+  margin-bottom: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #efefef;
+}
+.wc-paylands-service-status {
+  padding: 2px 8px 3px;
+  font-size: 11px;  
+  background-color: #4CBB17;
+  color: white;
+  border-radius: 13px;
+}
+
+.paylands-tabs {
+  display: flex;
+  margin-bottom: 0;
+  border-bottom: 1px solid #eee;
+}
+
+.paylands-tab-link {
+  background: #f1f1f1;
+  border: 1px solid #eee;
+  cursor: pointer;
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 5px; /* Mantener espacio entre pestañas */
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom: none;
+}
+
+.paylands-tab-link.active {
+  background: #fff;
+  color: #000;
+  border-bottom: 1px solid #fff; /* Eliminar borde inferior de la pestaña activa */
+  margin-bottom: -1px;
+}
+
+.paylands-tab-content-container {
+  border: 1px solid #eee;
+  padding: 20px;
+  background: #fff;
+  border-top: none; /* Eliminar borde superior del contenedor */
+  margin-bottom: 40px;
+}
+
+.paylands-tab-content {
+  display: none;
+}
+
+.paylands-tab-content.active {
+  display: block;
+}
+
+/* toggle-button.css */
+#wc-paylands-get-started-container .switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+#wc-paylands-get-started-container .switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+#wc-paylands-get-started-container .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+}
+
+#wc-paylands-get-started-container .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+}
+
+#wc-paylands-get-started-container input:checked + .slider {
+  background-color: #4CBB17;
+}
+
+#wc-paylands-get-started-container input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+#wc-paylands-get-started-container .slider.round {
+  border-radius: 34px;
+}
+
+#wc-paylands-get-started-container .slider.round:before {
+  border-radius: 50%;
+}
+
+#wc-paylands-get-started-container .toggle-label {
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+#wc-paylands-get-started-container .toogle-info a {
+  color: #646970;
+}
+
+#wc-paylands-get-started-container .toogle-info a:hover {
+  color: #ee1b4e;
+}
+
+#wc-paylands-get-started-container .test-mode-info-line {
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* ajustes avanzados */
+#wc-paylands-get-started-container .collapsible-link {
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: bold;
+  color: #ee1b4e;
+}
+
+#wc-paylands-get-started-container .collapsible-link:hover {
+  color: #ee1b4e;
+}
+
+.notice-paylands {
+  display: flex;
+  align-items: center; 
+  background-repeat: no-repeat;
+  border-left-color: #ee1b4e;
+  background-size: 30px 30px;
+  background-image: url(/wp-content/plugins/woocommerce-paylands/admin/assets/images/paylands-icon-large.png);
+  padding: 14px 0 14px 50px !important; 
+  background-position: left 10px center;
+  min-height: 30px; 
+}
+.notice-paylands p {
+  margin: 0; 
+}
+
+.notice-paylands .wc-paylands-button {
+  appearance: button;
+  text-decoration: none;
+  font-weight: 500  ;
+  border-radius: 20px;
+  border-style: solid;
+  border-width: 1px;
+  font-size: 14px;
+  line-height: 16px;
+  padding: 7px 24px; 
+  background-color: #fff;
+  border-color: #ee1b4e;
+  color: #ee1b4e;
+  margin-left: 10px;
+}
+
+.notice-paylands .wc-paylands-button:hover {
+  background-color: #ee1b4e;
+  border-color: #ee1b4e;
+  color: #fff;
+}

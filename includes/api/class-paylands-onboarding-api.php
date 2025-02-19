@@ -236,7 +236,7 @@ class Paylands_Onboarding_Api {
 			if (is_array($location) &&
 				isset($location['status'], $location['business_kyc_status']) &&
 				$location['status'] === 'ACTIVE' &&
-				$location['business_kyc_status'] === 'APPROVED') {
+				$location['business_kyc_status'] === 'APPROVED' || $location['business_kyc_status'] === 'UPDATING') {
 				return true; // El comercio está activo
 			}
 		}

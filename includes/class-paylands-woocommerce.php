@@ -66,7 +66,6 @@ class Paylands_Woocommerce {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Paylands_Woocommerce_Loader. Orchestrates the hooks of the plugin.
-	 * - Paylands_Woocommerce_i18n. Defines internationalization functionality.
 	 * - Paylands_Woocommerce_Admin. Defines all hooks for the admin area.
 	 * - Paylands_Woocommerce_Public. Defines all hooks for the public side of the site.
 	 *
@@ -77,9 +76,6 @@ class Paylands_Woocommerce {
 
 		//The class responsible for orchestrating the actions and filters of the core plugin.
 		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-loader.php';
-
-		//The class responsible for defining internationalization functionality of the plugin.
-		//require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-i18n.php';
 
 		//The class responsible for defining all actions that occur in the admin area.
 		require_once PAYLANDS_WOOCOMMERCE_ADMIN . '/class-paylands-woocommerce-admin.php';
@@ -108,9 +104,6 @@ class Paylands_Woocommerce {
 		//The class responsible to load the Paylands Orders Model.
 		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-orders.php';
 
-		//The class responsible to load the Paylands Controller.
-		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-controller.php';
-
 		//The class responsible to connect the Paylands account
 		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-account-connect.php';
 
@@ -133,18 +126,6 @@ class Paylands_Woocommerce {
 	 * Define the locale for this plugin for internationalization.
 	 */
 	public function set_locale() {
-		/*if ( function_exists( 'determine_locale' ) ) {
-			$locale = determine_locale();
-		} else {
-			// @todo Remove when start supporting WP 5.0 or later.
-			$locale = is_admin() ? get_user_locale() : get_locale();
-		}
-
-		$locale = apply_filters( 'plugin_locale', $locale, 'paylands-woocommerce' );
-
-		unload_textdomain( 'paylands-woocommerce' );
-		load_textdomain( 'paylands-woocommerce', $this->locales . '/paylands-woocommerce-' . $locale . '.mo' );
-		load_plugin_textdomain( 'paylands-woocommerce', false, $this->locales );*/
 		load_plugin_textdomain(
 			'paylands-woocommerce',
 			false,
@@ -182,15 +163,17 @@ class Paylands_Woocommerce {
 	 */
 	private function define_woocommerce_hooks() {
 		//Paylands_Logger::dev_debug_log('define_woocommerce_hooks');
-		$pnp_loader = new Paylands_Gateway_Loader();
+		$pnp_loader = new Paylands_Gateway_Loader();	
 		$admin_settings = new Paylands_Gateway_Settings();
 
 		$this->loader->add_action( 'plugins_loaded', $pnp_loader, 'paylands_payment_resources_init', 20 ); //priority 20 because has to be executed after de run_paylands_woocommerce function
 		$this->loader->add_filter( 'woocommerce_payment_gateways', $pnp_loader, 'add_pnp_paylands_gateway');
 
+		//añade compatibilidad con el checkout por bloques
+		$this->loader->add_action( 'woocommerce_blocks_loaded', $pnp_loader, 'add_pnp_paylands_gateway_blocks_support');
+
 		$this->loader->add_action( 'woocommerce_settings_checkout', $admin_settings, 'admin_main_settings_content' );
 		$this->loader->add_action( 'woocommerce_settings_save_checkout', $admin_settings, 'save_main_settings' );
-		//$this->loader->add_filter( 'woocommerce_get_settings_checkout', $admin_settings, 'admin_main_settings_fields', 10, 2 );
 	}
 
 	/**

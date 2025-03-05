@@ -6,6 +6,8 @@
 class Paylands_Woocommerce_Activator {
 
 	public static function activate() {
+
+		delete_option('paylands_gateway_routes_flushed');
 		
 		//crea la tabla en bbdd //TODO syl queremos la tabla??
 		global $wpdb;

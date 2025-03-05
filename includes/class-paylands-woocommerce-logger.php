@@ -40,34 +40,37 @@ class Paylands_Logger {
 			return;
 		}
 
-		if ( empty( self::$logger ) ) {
-			self::$logger = new WC_Logger();
+		if (self::is_logs_active()) {
+
+			if ( empty( self::$logger ) ) {
+				self::$logger = new WC_Logger();
+			}
+
+			if (empty($start_time)) $start_time = current_time('timestamp');
+
+			if ( ! is_null( $start_time ) ) {
+
+				$formatted_start_time = date_i18n( get_option( 'date_format' ) . ' g:ia', $start_time );
+				$end_time             = is_null( $end_time ) ? current_time( 'timestamp' ) : $end_time;
+				$formatted_end_time   = date_i18n( get_option( 'date_format' ) . ' g:ia', $end_time );
+				$elapsed_time         = round( abs( $end_time - $start_time ) / 60, 2 );
+
+				$log_entry  = "\n" . '====Paylands Version: ' . PAYLANDS_WOOCOMMERCE_VERSION . '====' . "\n";
+				$log_entry .= '====Start Log ' . $formatted_start_time . '====' . "\n" . $message . "\n";
+				$log_entry .= '====End Log ' . $formatted_end_time . ' (' . $elapsed_time . ')====' . "\n\n";
+
+			} else {
+				$log_entry  = "\n" . '====Paylands Version: ' . PAYLANDS_WOOCOMMERCE_VERSION . '====' . "\n";
+				$log_entry .= '====Start Log====' . "\n" . $message . "\n" . '====End Log====' . "\n\n";
+
+			}
+
+			self::$logger->add( self::LOG_FILENAME, $log_entry );
 		}
-
-		if (empty($start_time)) $start_time = current_time('timestamp');
-
-		if ( ! is_null( $start_time ) ) {
-
-			$formatted_start_time = date_i18n( get_option( 'date_format' ) . ' g:ia', $start_time );
-			$end_time             = is_null( $end_time ) ? current_time( 'timestamp' ) : $end_time;
-			$formatted_end_time   = date_i18n( get_option( 'date_format' ) . ' g:ia', $end_time );
-			$elapsed_time         = round( abs( $end_time - $start_time ) / 60, 2 );
-
-			$log_entry  = "\n" . '====Paylands Version: ' . PAYLANDS_WOOCOMMERCE_VERSION . '====' . "\n";
-			$log_entry .= '====Start Log ' . $formatted_start_time . '====' . "\n" . $message . "\n";
-			$log_entry .= '====End Log ' . $formatted_end_time . ' (' . $elapsed_time . ')====' . "\n\n";
-
-		} else {
-			$log_entry  = "\n" . '====Paylands Version: ' . PAYLANDS_WOOCOMMERCE_VERSION . '====' . "\n";
-			$log_entry .= '====Start Log====' . "\n" . $message . "\n" . '====End Log====' . "\n\n";
-
-		}
-
-		self::$logger->add( self::LOG_FILENAME, $log_entry );
 	}
 
 	public static function dev_debug_log( $message, $start_time = null, $end_time = null ) {
-		//if (woocommerce_paylands_is_dev_mode()) { //TODO syl pro logs de debug desactivar
+		if (self::is_logs_active()) {
 			if ( ! class_exists( 'WC_Logger' ) ) {
 				return;
 			}
@@ -99,6 +102,13 @@ class Paylands_Logger {
 			}
 	
 			self::$logger->add( self::LOG_FILENAME, $log_entry );
-		//}
+		}
+	}
+
+	public static function is_logs_active() {
+		if (woocommerce_paylands_is_dev_mode()) {
+			return true;
+		}
+		return Paylands_Gateway_Settings::is_debug_log_active_static();
 	}
 }

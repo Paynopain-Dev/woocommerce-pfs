@@ -559,3 +559,21 @@ msgstr ""
 
 msgid "Payment Pending Card"
 msgstr ""
+
+msgid "There was an error processing the payment."
+msgstr ""
+
+msgid "Error message"
+msgstr ""
+
+msgid "Message displayed to the customer if the payment was not successful"
+msgstr ""
+
+msgid "Debug"
+msgstr ""
+
+msgid "Activate debug logs"
+msgstr ""
+
+msgid "Enable this option to activate debug logs"
+msgstr ""

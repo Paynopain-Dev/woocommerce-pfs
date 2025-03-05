@@ -423,6 +423,50 @@ class Paylands_Gateway_Loader {
 
 	}
 
+	public function add_pnp_paylands_gateway_blocks_support() {
+		if ( class_exists( 'Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType' ) ) {
+			require_once PAYLANDS_ROOT_PATH . 'includes/blocks/class-wc-paylands-blocks-payment.php';
+
+			//Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway_blocks_support');
+			$mode = '';
+			if (Paylands_Gateway_Settings::is_test_mode_active_static()) {
+				$gateways_list = $this->get_gateways_list('test');
+				$mode = 'test';
+			}else{
+				$gateways_list = $this->get_gateways_list('pro');
+				$mode = 'pro';
+			}
+			if (!empty($gateways_list)) {
+				Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway_blocks_support hay servicios '.$mode);
+				foreach ($gateways_list as $gateway) {
+					if ($gateway['enabled']) {
+						$gateway_name = $this->get_gateway_id($gateway);
+						$icon = Paylands_WC_Gateway::get_gateway_default_icon($gateway['name'], $gateway['type']);
+						$this->register_paylands_gateway_block($gateway_name, $icon);
+						//Paylands_Logger::dev_debug_log('añadida gateway block '.print_r($gateway, true));
+						//Paylands_Logger::dev_debug_log('añadida gateway block '.$gateway_class_name);
+					}else{
+						Paylands_Logger::dev_debug_log('no añadida gateway block no enabled '.$gateway['type']);
+					}
+				}
+			}else{
+				Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway_blocks_support no hay servicios '.$mode);
+			}
+		}
+	}
+	
+	/**
+	 * Función para registrar la pasarela en WooCommerce Blocks
+	 */
+	private function register_paylands_gateway_block($gateway_name, $icon) {
+		add_action(
+			'woocommerce_blocks_payment_method_type_registration',
+			function (Automattic\WooCommerce\Blocks\Payments\PaymentMethodRegistry $payment_method_registry) use ($gateway_name, $icon) {
+				$payment_method_registry->register(new WC_Paylands_Blocks_Payment($gateway_name, $icon));
+			}
+		);
+	}
+
 	/**
 	 * Add Paylands Gateway Instance to the WooCommerce
 	 * Payment Method Class list.

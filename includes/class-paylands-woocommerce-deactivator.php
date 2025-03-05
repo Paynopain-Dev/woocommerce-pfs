@@ -6,6 +6,8 @@
 class Paylands_Woocommerce_Deactivator {
 
 	public static function deactivate() {
+
+		delete_option('paylands_gateway_routes_flushed');
 		//TODO confirmar si se borran todos los datos al desactivar
 		/*
 		woocoomerce stripe lo hace con la constante

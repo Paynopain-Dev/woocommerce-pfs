@@ -559,3 +559,24 @@ msgstr "Pago pendiente de respuesta 3DS"
 
 msgid "Payment Pending Card"
 msgstr "Pago pendiente de tarjeta"
+
+msgid "There was an error processing the payment"
+msgstr "No se ha podido completar el pago"
+
+msgid "Error message"
+msgstr "Mensaje de error"
+
+msgid "Message displayed to the customer if the payment was not successful"
+msgstr "Mensaje que se muestra al cliente si el pago no se ha realizado con éxito"
+
+msgid "Debug"
+msgstr "Depuración"
+
+msgid "Activate debug logs"
+msgstr "Activar registros de depuración"
+
+msgid "Enable this option to activate debug logs"
+msgstr "Marca esta opción para activar los registros de depuración"
+
+
+

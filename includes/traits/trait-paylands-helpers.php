@@ -54,17 +54,6 @@ trait Paylands_Helpers {
 		$this->orders 	= new Paylands_Orders();
 	}
 
-	public function get_selected_payment_gateway() {
-		if (!empty(WC()->session)) {
-			$selected_payment_method_id = WC()->session->get( 'chosen_payment_method' );
-			if (!empty($selected_payment_method_id)) {
-				$current_gateway = WC()->payment_gateways()->payment_gateways()[ $selected_payment_method_id ];
-				return $current_gateway;
-			}
-		}
-		return false;
-	}
-
 	/**
 	 * Initialize the Paylands Api
 	 */
@@ -156,16 +145,19 @@ trait Paylands_Helpers {
 	 * @return array - The Action URLs
 	 */
 	private function get_actions_url( $id ) {
+		$checkout_url = wc_get_checkout_url().'?paylands_error=1';
+		$ko_url = add_query_arg('paylands_error', '1', $checkout_url);
+		$site_url = get_site_url();
 		if ( get_option( 'permalink_structure' ) ) {
 			return array(
-	    		'callback'		=> get_site_url() . "/wp-json/paylands-woocommerce/v1/callback",
-				'ko' 			=> get_site_url() . "/paylands-ko?id={$id}",
+	    		'callback'		=> $site_url . "/wp-json/paylands-woocommerce/v1/callback",
+				'ko' 			=> $ko_url,
 	    	);
 		}
 
 		return array(
-    		'callback'		=> get_site_url() . "/index.php?rest_route=/paylands-woocommerce/v1/callback",
-    		'ko' 			=> get_site_url() . "/?paylands_routes=paylands_ko&id={$id}",
+    		'callback'		=> $site_url . "/index.php?rest_route=/paylands-woocommerce/v1/callback",
+    		'ko' 			=> $ko_url,
     	);
 	}
 
@@ -238,4 +230,13 @@ trait Paylands_Helpers {
     	header("Content-Type: application/json");
     	echo json_encode( $data );
     }
+
+	public static function is_checkout_block_used() {
+		if ( ! class_exists( \Automattic\WooCommerce\Blocks\Payments\Integrations\AbstractPaymentMethodType::class ) ) {
+			return false;
+		}
+
+		// @phpstan-ignore-next-line.
+		return class_exists( \Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils::class ) && \Automattic\WooCommerce\Blocks\Utils\CartCheckoutUtils::is_checkout_block_default();
+	}
 }

@@ -7,8 +7,6 @@
  */
 class Paylands_Woocommerce_Public {
 
-	//TODO syl creo que no se usa para nada
-
 	//The ID of this plugin.
 	private $plugin_name;
 

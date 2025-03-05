@@ -119,7 +119,7 @@ class Paylands_Api_Client {
 		$payload_json = json_encode($data);
 		$token = $this->api_key;
 
-		Paylands_Logger::dev_debug_log('api sendRequest '.$url.' *** '.$payload_json);
+		//Paylands_Logger::dev_debug_log('api sendRequest '.$url.' *** '.$payload_json);
 
 		$ch = curl_init();
 
@@ -278,6 +278,8 @@ class Paylands_Api_Client {
 			return false;
 		}
 
+		$reference = $additional.'-'.time(); //tiene que ser diferente en cada llamada, por eso añado el timestamp
+
 		$amount_in_cents = $this->toCents($amount);
 		$payload = [
 			"amount" => $amount_in_cents,
@@ -290,7 +292,7 @@ class Paylands_Api_Client {
 			"url_post" => $url_post,
 			"url_ok" => $url_ok,
 			"url_ko" => $url_ko,
-			"reference" => $additional,
+			"reference" => $reference,
 		];
 
 		if (!empty($source_uuid)) {

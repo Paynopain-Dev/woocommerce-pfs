@@ -19,12 +19,14 @@ class Paylands_Gateway_Settings {
 
 	public static $main_settings_fields_ids = array('woocommerce_paylands_settings_form_lang',
 													 'woocommerce_paylands_settings_test_mode',
+													 'woocommerce_paylands_settings_error_message',
 													 'woocommerce_paylands_settings_api_key_test',
 													 'woocommerce_paylands_settings_signature_key_test',
 													 'woocommerce_paylands_settings_checkout_uuid_test',
 													 'woocommerce_paylands_settings_api_key_pro',
 													 'woocommerce_paylands_settings_signature_key_pro',
-													 'woocommerce_paylands_settings_checkout_uuid_pro',);
+													 'woocommerce_paylands_settings_checkout_uuid_pro',
+													 'woocommerce_paylands_settings_debug_logs');
 
 	private $main_settings;
 
@@ -98,6 +100,18 @@ class Paylands_Gateway_Settings {
 			if ($mode == 'yes') return true;
 		}
 		return false;
+	}
+
+	public static function is_debug_log_active_static() {
+		$mode = get_option('woocommerce_paylands_settings_debug_logs');
+		if (!empty($mode) && $mode == 'yes') return true;
+		return false;
+	}
+
+	public static function get_error_message_static() {
+		$text = get_option('woocommerce_paylands_settings_error_message');
+		if (empty($text)) $text = __( "There was an error processing the payment", 'paylands-woocommerce' );
+		return $text;
 	}
 
 	public function get_form_lang() {
@@ -543,6 +557,14 @@ class Paylands_Gateway_Settings {
 					),
 				),
 				array(
+					'name' => __( 'Error message', 'paylands-woocommerce' ),
+					'type' => 'textarea',
+					'desc' => __( 'Message displayed to the customer if the payment was not successful', 'paylands-woocommerce' ),
+					'desc_at_end' => true,
+					'id'       => 'woocommerce_paylands_settings_error_message',
+					'default'  => __( 'There was an error processing the payment', 'paylands-woocommerce' ),
+				),
+				array(
 					'type' => 'sectionend',
 				),
 				array(
@@ -592,6 +614,14 @@ class Paylands_Gateway_Settings {
 					'desc' => __( 'Your Checkout UUID for test payments.', 'paylands-woocommerce' ),
 					'id'       => 'woocommerce_paylands_settings_checkout_uuid_test',
 					'custom_attributes' => $custom_attributes,
+				),
+				array(
+					'title'       => __( 'Debug', 'paylands-woocommerce' ),
+					'label'       => __( 'Activate debug logs', 'paylands-woocommerce' ),
+					'id'       	  => 'woocommerce_paylands_settings_debug_logs',
+					'type'        => 'checkbox',
+					'desc' => __( 'Enable this option to activate debug logs', 'paylands-woocommerce' ),
+					'default'     => 'no',
 				),
 				array(
 					'id'   => 'woocommerce_paylands_settings_advanced_title_section',

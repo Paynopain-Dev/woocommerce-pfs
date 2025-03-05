@@ -8,10 +8,10 @@
  * Text Domain: paylands-woocommerce
  * Domain Path: /languages
  * WC requires at least: 7.5
- * WC tested up to: 7.7.0
+ * WC tested up to: 9.6
  * Requires at least: 6.0
  * Requires PHP: 7.3
- * Version: 1.2
+ * Version: 1.3
  */
 
 // If this file is called directly, abort.
@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'PAYLANDS_WOOCOMMERCE_VERSION', '1.2' );
+define( 'PAYLANDS_WOOCOMMERCE_VERSION', '1.3' );
 define( 'PAYLANDS_ROOT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PAYLANDS_PLUGIN_FILE', __FILE__ );
 
@@ -88,6 +88,9 @@ function woocommerce_paylands_deactivate() {
 register_activation_hook( __FILE__, 'woocommerce_paylands_activate' );
 register_deactivation_hook( __FILE__, 'woocommerce_paylands_deactivate' );
 
+require_once PAYLANDS_ROOT_PATH.'includes/callback.php';
+
+
 /**
  * Begins execution of the plugin.
  */
@@ -139,14 +142,15 @@ function woocommerce_paylands_execute_plugins_loaded() {
 	/*if ( wp_doing_ajax() ) {
 		return false;
 	}*/
+	//comentado solicitudes via api porque sino no funcionaba en el checkout de bloques
 	// Verifica si es una solicitud REST
-	if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
+	/*if ( defined( 'REST_REQUEST' ) && REST_REQUEST ) {
 		return false;
 	}
 	// Verifica si la URI contiene /wp-json/ explícitamente
 	if ( strpos( $_SERVER['REQUEST_URI'], '/wp-json/' ) !== false ) {
 		return false;
-	}
+	}*/
 
 	return true;
 }
@@ -179,3 +183,16 @@ function woocommerce_paylands_print_logo_html() {
 	</div>
 	<?php
 }
+
+//para que Woocommerce lo tenga como compatible con HPOS y blocks
+add_action(
+	'before_woocommerce_init',
+	function() {
+		if ( class_exists( '\Automattic\WooCommerce\Utilities\FeaturesUtil' ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'cart_checkout_blocks', __FILE__, true );
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
+);
+
+?>

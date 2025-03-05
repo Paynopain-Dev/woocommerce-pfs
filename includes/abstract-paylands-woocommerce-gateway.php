@@ -12,6 +12,8 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 
+	use Paylands_Helpers;
+
 	/**
 	 * Payland Gateway Constructor (needs to be called from child's constructor)
 	 */
@@ -19,7 +21,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 
 		//Paylands_Logger::dev_debug_log('abstract_gateway_init '.$this->id);
 		// Define the gateway stuffs.
-		$this->has_fields 			= true;
+		$this->has_fields 			= false;
 		$this->support 				= array(
 			'products',
 			'add_payment_method'
@@ -78,7 +80,6 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				'type'        => 'text',
 				'description' => __( 'The title the customer will see when selecting the payment method on the checkout page.', 'paylands-woocommerce' ),
 				'default'     => $this->method_title,
-				//'desc_tip'   => true
 			),
 			'description' => array(
 				'title'       => __( 'Description', 'paylands-woocommerce' ),
@@ -139,33 +140,115 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		return true;
 	}
 
-	/**
-	 * This method fires the main gateway process
-	 * after the woocommmerce checkout has been completed.
-	 * This process the payment directly.
-	 *
-	 * @param  integer $order_id - The WooCommerce Order ID
-	 * @return array 				The Process Result.
-	 */
-	public function process_payment( $order_id ) {
+	public function process_payment($order_id) {
+		//Paylands_Logger::dev_debug_log('process_payment');
+		try {
 
-		$order = wc_get_order( $order_id );
+			$this->paylands_api_loader();
 
-		Paylands_Logger::dev_debug_log('process_payment status '.$this->method_title.' - '.$order->get_status());
+			if ( $this->is_gateway_ready ) {
+				// Retrieve the order id to process payment.
+				$order 			= wc_get_order($order_id);
+				$total 			= $order->get_total();
+				$customer_id 	= $this->get_customer_id();
+				$urls 			= $this->get_actions_url( $order->get_id() );
+				$order_names	= "{$order->get_billing_first_name()} {$order->get_billing_last_name()} - {$order->get_id()}";
 
-		if ( 'processing' === $order->get_status() ) {
+				try {
+					Paylands_Logger::dev_debug_log('process_payment createOrder');
+
+					Paylands_Logger::dev_debug_log('process_payment current_gateway '.json_encode($this));//, JSON_PRETTY_PRINT));
+					if (empty($this)) {
+						Paylands_Logger::log('error no hay pasarela seleccionada');
+						// load error page
+						return array(
+							'result' 	=> 'failure',
+							'redirect'	=> $urls['ko']
+						);
+					}
+
+					/*
+					Segun email de Pascual el 08/07/2024:
+					ahora mismo no tenemos una forma de indicar si un método de pago es de tarjeta o no porque algunos son válidos tanto para tarjeta como sin ella.
+					Lo que podemos hacer de momento es indicar en el nombre del método de pago algo tipo "[Card]". 
+					Entonces, para saber si tenéis que redirigir al checkout o a /payment/process, podéis consultar si existe el string "[Card]" dentro del nombre del método de pago. 
+					Aunque no es lo más correcto, ahora mismo es la única forma de indicarlo.
+					*/
+					$is_card = false;
+					$is_bizum = false;
+					if (isset($this->method_title) && !empty($this->method_title)) {
+						if (str_contains($this->method_title, '[Card]')) {
+							$is_card = true;
+						}elseif (str_contains(strtolower($this->method_title), 'bizum')) {
+							$is_bizum = true;
+						}
+					}
+					//$is_card = true;
+					
+
+					$payland_order = $this->api->createOrder(
+						$total,
+						"AUTHORIZATION",
+						(string)$customer_id, // String format because is neccessary
+						$order_names,
+						(string)$order->get_id(), // String format because is neccessary
+						$this->service,
+						$this->secure_payment, //TODO syl probar
+						$urls['callback'],
+						$order->get_checkout_order_received_url(),
+						$urls['ko'],
+						'',
+						$is_card,
+						$order
+					);
+				} catch (Exception $e) {
+					$error = sprintf(
+						__( 'Something failed creating the payland order. Error: %s', 'paylands-woocommerce'),
+						$e->getMessage()
+					);
+					Paylands_Logger::log( $error );
+					return array(
+						'result' 	=> 'failure',
+						'redirect'	=> $urls['ko']
+					);
+				}
+
+				// validate if order was created
+				if ( empty( $payland_order ) || $payland_order['code'] !== 200 ) {
+					Paylands_Logger::log( $payland_order );
+					// load error page
+					return array(
+						'result' 	=> 'failure',
+						'redirect'	=> $urls['ko']
+					);
+				}
+
+				$this->orders->save( $payland_order );
+
+				if ($is_card) {
+					$redirect_url = $this->api->getRedirectCheckoutUrl($payland_order["order"]["token"]);
+				}elseif ($is_bizum) {
+					$redirect_url = $this->api->getRedirectBizumUrl($payland_order["order"]["token"]);
+				}else{
+					$redirect_url = $this->api->getRedirectUrl($payland_order["order"]["token"]);
+					//TODO syl añadir el código del apm a la url?
+					/*"BIZUM" "IDEAL" "SOFORT" "KLARNA" "VIACASH" "COFIDIS" "PIX" "CRYPTO" "GIROPAY" "TRANSFER" "PSE" "PAYPAL" "PAYLATER" "SPEI" "MULTIBANCO" "MBWAY" "FLOA" "PAYSAFECARD" "PAGO_FACIL" "EFECTY" "BOLETO" "LOTERICA" "PAYSHOP" "PICPAY" "MACH" "KLAP" "KHIPU" "SERVIPAG"*/
+				}
+				
+				Paylands_Logger::dev_debug_log('payment redirect_url '.$redirect_url);
+
+				return array(
+					'result' 	=> 'success',
+					'redirect'	=> $redirect_url
+				);
+			}
+		} catch ( Exception $e ) {
 			return array(
-				'result' 	=> 'success',
-				'redirect'	=> $order->get_checkout_order_received_url() //TODO syl porque este va al order_rceived? creo que se salta el pago
+				'result' 	=> 'failure',
+				'redirect'	=> $urls['ko']
 			);
+			Paylands_Logger::log('process payment error redirect_url '.$e->getMessage());
 		}
-
-		$payment_url = home_url('/paylands-index/') . '?order_id=' . $order_id;
-
-		return array(
-			'result' 	=> 'success',
-			'redirect'	=> $payment_url
-		);
 	}
 
 	/**
@@ -198,18 +281,6 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		if ( ! $this->are_keys_set() ) {
 			Paylands_Logger::log( 'The Paylands keys are required '.$this->method_title );
 			return;
-		}
-
-		if ( isset( $_GET['paylands_routes']) && $_GET['paylands_routes'] === 'paylands_index' ) {
-			Paylands_Logger::dev_debug_log('payment_scripts paylands_index '.$this->method_title);
-			$controller = new Paylands_Controller();
-			$controller->paylands_index();
-		}
-
-		if ( isset( $_GET['paylands_routes']) && $_GET['paylands_routes'] === 'paylands_ko' ) {
-			Paylands_Logger::dev_debug_log('payment_scripts paylands_ko '.$this->method_title);
-			$controller = new Paylands_Controller();
-			$controller->paylands_ko();
 		}
 	}
 

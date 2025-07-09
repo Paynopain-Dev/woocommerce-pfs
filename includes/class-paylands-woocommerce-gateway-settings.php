@@ -94,6 +94,21 @@ class Paylands_Gateway_Settings {
 		return false;
 	}
 
+	public static function is_checkout_uuid_static($mode='') {
+		//Paylands_Logger::dev_debug_log('is_checkout_uuid_static '.$mode);
+		if (empty($mode)) {
+			if (self::is_test_mode_active_static()) {
+				$mode = 'test';
+			} else {
+				$mode = 'pro';
+			}
+		}
+		$checkout_uuid = get_option('woocommerce_paylands_settings_checkout_uuid_'.$mode);
+		//Paylands_Logger::dev_debug_log('is_checkout_uuid_static checkout_uuid '.$checkout_uuid);
+		if (!empty($checkout_uuid)) return true;
+		return false;
+	}
+
 	public function is_test_mode_active() {
 		if (!empty($this->main_settings)) {
 			$mode = $this->main_settings['test_mode'];
@@ -122,6 +137,8 @@ class Paylands_Gateway_Settings {
 	}
 
 	public function get_api_key($mode='') {
+		Paylands_Logger::dev_debug_log('get_api_key '.$mode);
+		Paylands_Logger::dev_debug_log('get_api_key main_settings'.json_encode($this->main_settings));
 		if (!empty($this->main_settings)) {
 			if (empty($mode)) {
 				if ($this->is_test_mode_active() && isset($this->main_settings['api_key_test']) && !empty($this->main_settings['api_key_test'])) {
@@ -134,6 +151,8 @@ class Paylands_Gateway_Settings {
 			}elseif ($mode == 'pro' && isset($this->main_settings['api_key_pro']) && !empty($this->main_settings['api_key_pro'])) {
 				return $this->main_settings['api_key_pro'];
 			}
+		}else{
+			Paylands_Logger::dev_debug_log('get_api_key empty main_settings');
 		}
 		return false;
 	}
@@ -173,6 +192,7 @@ class Paylands_Gateway_Settings {
 	}
 
 	public function are_keys_set($mode='') {
+		Paylands_Logger::dev_debug_log('are_keys_set');
 		$api_key = $this->get_api_key($mode);
 		$signature_key = $this->get_signature_key($mode);
 		return (!empty($api_key) && !empty($signature_key));
@@ -415,10 +435,100 @@ class Paylands_Gateway_Settings {
 
 	private function print_services($services, $apple_pay_enabled, $google_pay_enabled, $mode, $mode_active=true) {
 		if (!empty($services)) { 
+			if (!empty($this->get_checkout_uuid($mode))) {
+				//si tiene checkout uuid el metodo de pago se seleccionara en el checkout de paylands
+				//mostramos un metodo de pago generico
+				$this->print_services_in_checkout($services, $apple_pay_enabled, $google_pay_enabled, $mode, $mode_active);
+			} else {
+				//el metodo de pago se seleccionara en el checkout de WC
+				//mostramos los metodos disponibles
+				$this->print_services_no_checkout($services, $apple_pay_enabled, $google_pay_enabled, $mode, $mode_active);
+			}
+		}else{
+			echo '<p>'.__( 'No payment methods available', 'paylands-woocommerce').'</p>';
+		}
+	}
+
+	private function print_services_in_checkout($services, $apple_pay_enabled, $google_pay_enabled, $mode, $mode_active=true) {
+		if (!empty($services)) { 
+			//listado de pasarelas declaradas en woocommerce
+			$wc_gateways = WC()->payment_gateways()->payment_gateways();
+			//comprueba que exista la pasarela de paylands
+			$gateway_id = 'paylands_woocommerce_payment_gateway';
+			if ( isset( $wc_gateways[$gateway_id] ) ) {
+				$paylands_gateway = $wc_gateways[$gateway_id];
+				$is_available = $paylands_gateway->is_available();
+				$settings = $paylands_gateway->settings;
+				if (!empty($settings['image'])) {
+					$image = $settings['image'];
+				}else{
+					$image = $paylands_gateway->icon;
+				}
+			}
+			?>
+			<ul id="wc-paylands-service-list">
+				<?php $this->print_one_click_payment_service($wc_gateways, $mode_active); ?>
+				<li class="wc-paylands-service <?php if (!$is_available) { echo "disabled"; } ?>">
+					<div class="wc-paylands-service-image">
+						<img src="<?php echo $image; ?>" alt=""/>
+					</div>
+					<div class="wc-paylands-service-content">
+						<h3 class="wc-paylands-service-name"><?php echo $paylands_gateway->method_title;?> <?php if ($is_available) {?><span class="wc-paylands-service-status enabled"><?php _e( 'Active', 'paylands-woocommerce');?></span><?php } ?></h3>
+						<p class="wc-paylands-service-title">
+							<?php echo $settings['title'];?><br>	
+						</p>
+						<p class="wc-paylands-service-desc">
+							<?php if ($settings['description']) { echo $settings['description'];?><br><?php }?>
+						</p>
+					</div>
+					<div class="wc-paylands-service-action">
+						<?php if ($mode_active) { //Si esta en este modo (test/pro) y el servicio esta activo en paylands
+							$button_text = __( 'Configure', 'paylands-woocommerce');
+							?> 
+							<a href="<?php echo $this->get_gateway_settings_url($gateway_id, 'main');?>" class="wc-paylands-button wc-paylands-button-secondary"><?php echo $button_text;?></a>
+						<?php } ?>
+					</div>
+				</li>
+			</ul>
+
+			<span class="wc-paylands-service-title"><?php _e( 'Payment methods included in Paylands Checkout', 'paylands-woocommerce');?></span>
+			<ul id="wc-paylands-extra-service-list">
+			<?php foreach ($services as $gateway) { 
+				//echo "**service -> <pre>"; print_r($gateway); echo "</pre>";
+				$gateway_id = Paylands_Gateway_Loader::get_gateway_id($gateway);
+				$is_available = $gateway['enabled'];
+				$image = Paylands_WC_Gateway::get_gateway_default_icon($gateway['name'], $gateway['type']);
+				?>
+				<li class="wc-paylands-service <?php if (!$is_available) { echo "disabled"; } ?>">
+					<div class="wc-paylands-service-image">
+						<img src="<?php echo $image; ?>" alt=""/>
+					</div>
+					<div class="wc-paylands-service-content">
+						<h3 class="wc-paylands-service-name"><?php echo $gateway['name'];?> <span class="wc-paylands-service-type"><?php echo $gateway['type'];?></span> <?php if ($is_available) {?><span class="wc-paylands-service-status enabled"><?php _e( 'Active', 'paylands-woocommerce');?></span><?php } ?></h3>
+						<?php /* <p class="wc-paylands-service-title">
+							<?php echo $gateway['name'];?><br>	
+						</p> */ ?>
+						<p class="wc-paylands-service-desc">
+							<?php if ($gateway['uuid']) { echo $gateway['uuid'];?><br><?php }?>
+						</p>
+					</div>
+					<div class="wc-paylands-service-action">
+					</div>
+				</li>
+			<?php } ?>
+			</ul> <?php 
+
+			$this->print_google_and_apple_services($apple_pay_enabled, $google_pay_enabled, $mode);
+		}
+	}
+
+	private function print_services_no_checkout($services, $apple_pay_enabled, $google_pay_enabled, $mode, $mode_active=true) {
+		if (!empty($services)) { 
 			//listado de pasarelas declaradas en woocommerce
 			$wc_gateways = WC()->payment_gateways()->payment_gateways();
 			?>
 			<ul id="wc-paylands-service-list">
+			<?php $this->print_one_click_payment_service($wc_gateways, $mode_active); ?>
 			<?php foreach ($services as $gateway) { 
 				//echo "**service -> <pre>"; print_r($gateway); echo "</pre>";
 				$gateway_id = Paylands_Gateway_Loader::get_gateway_id($gateway);
@@ -433,6 +543,8 @@ class Paylands_Gateway_Settings {
 						$image = $wc_gateways[$gateway_id]->icon;
 					}
 					//echo "<pre>settings: "; print_r($settings); echo "</pre>";
+				}else if ($mode_active && $gateway['enabled']) {
+					$is_available = true;
 				}
 				?>
 				<li class="wc-paylands-service <?php if (!$is_available) { echo "disabled"; } ?>">
@@ -459,10 +571,52 @@ class Paylands_Gateway_Settings {
 
 			<?php } ?>
 			</ul> <?php 
-		}else{
-			echo '<p>'.__( 'No payment methods available', 'paylands-woocommerce').'</p>';
+
+			$this->print_google_and_apple_services($apple_pay_enabled, $google_pay_enabled, $mode);
 		}
-		if ($apple_pay_enabled || $google_pay_enabled || !empty($services)) { ?>
+	}
+
+	private function print_one_click_payment_service($wc_gateways, $mode_active) {
+		//comprueba que exista la pasarela de paylands
+		$gateway_id = 'paylands_woocommerce_one_click';
+		if ( isset( $wc_gateways[$gateway_id] ) ) {
+			$paylands_gateway = $wc_gateways[$gateway_id];
+			$is_available = $paylands_gateway->is_available();
+			$settings = $paylands_gateway->settings;
+			if (!empty($settings['image'])) {
+				$image = $settings['image'];
+			}else{
+				$image = $paylands_gateway->icon;
+			}
+			?>
+			<li class="wc-paylands-service <?php if (!$is_available) { echo "disabled"; } ?>">
+				<div class="wc-paylands-service-image">
+					<img src="<?php echo $image; ?>" alt=""/>
+				</div>
+				<div class="wc-paylands-service-content">
+					<h3 class="wc-paylands-service-name"><?php echo $paylands_gateway->method_title;?> <?php if ($is_available) {?><span class="wc-paylands-service-status enabled"><?php _e( 'Active', 'paylands-woocommerce');?></span><?php } ?></h3>
+					<p class="wc-paylands-service-title">
+						<?php echo $settings['title'];?><br>	
+					</p>
+					<p class="wc-paylands-service-desc">
+						<?php if ($settings['description']) { echo $settings['description'];?><br><?php }?>
+					</p>
+				</div>
+				<div class="wc-paylands-service-action">
+					<?php if ($mode_active) { //Si esta en este modo (test/pro) y el servicio esta activo en paylands
+						$button_text = __( 'Configure', 'paylands-woocommerce');
+						?> 
+						<a href="<?php echo $this->get_gateway_settings_url($gateway_id, 'main');?>" class="wc-paylands-button wc-paylands-button-secondary"><?php echo $button_text;?></a>
+					<?php } ?>
+				</div>
+			</li>
+			<?
+		}
+	}
+
+	private function print_google_and_apple_services($apple_pay_enabled, $google_pay_enabled, $mode) {
+		if ($apple_pay_enabled || $google_pay_enabled) { ?>
+			<span class="wc-paylands-service-title"><?php _e( 'Other payment methods', 'paylands-woocommerce');?></span>
 			<ul id="wc-paylands-extra-service-list">
 				<?php 
 				if ($mode == 'test') {

@@ -577,3 +577,52 @@ msgstr ""
 
 msgid "Enable this option to activate debug logs"
 msgstr ""
+
+msgid "Payment methods included in Paylands Checkout"
+msgstr ""
+
+msgid "Other payment methods"
+msgstr ""
+
+msgid "Paylands One-Click Payment"
+msgstr ""
+
+msgid "Select a saved card for a faster one-click payment"
+msgstr ""
+
+msgid "Only successful cards"
+msgstr ""
+
+msgid "Allow only previously successful cards"
+msgstr ""
+
+msgid "Only allow cards that have been used successfully in previous payments."
+msgstr ""
+
+msgid "Something failed getting the customer cards. Error: %s"
+msgstr ""
+
+msgid "You have no saved cards."
+msgstr ""
+
+msgid "One-Click payment succeeded."
+msgstr ""
+
+msgid "One-Click payment refused."
+msgstr ""
+
+msgid "One-Click payment failure"
+msgstr ""
+
+msgid "Icon"
+msgstr ""
+
+msgid "You will be redirected to complete the payment."
+msgstr ""
+
+msgid "Please select a card."
+msgstr ""
+
+msgid "Select a saved card for a faster one-click payment"
+msgstr ""
+

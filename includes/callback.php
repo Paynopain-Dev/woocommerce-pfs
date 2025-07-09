@@ -78,6 +78,8 @@ function paylands_process_callback($data) {
                         $note = __("Payment Error", "paylands-woocommerce");
                 }
                 $order->add_order_note( $note.$payment_service );
+
+                $order->set_transaction_id( $data['order']['uuid'] ?? '' );
             }
         }
     }

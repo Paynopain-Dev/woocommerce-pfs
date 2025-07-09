@@ -578,5 +578,52 @@ msgstr "Activar registros de depuración"
 msgid "Enable this option to activate debug logs"
 msgstr "Marca esta opción para activar los registros de depuración"
 
+msgid "Payment methods included in Paylands Checkout"
+msgstr "Métodos de pago incluidos en el checkout de Paylands"
+
+msgid "Other payment methods"
+msgstr "Otros métodos de pago"
+
+msgid "Paylands One-Click Payment"
+msgstr "Pago con un clic de Paylands"
+
+msgid "Only successful cards"
+msgstr "Solo tarjetas exitosas"
+
+msgid "Allow only previously successful cards"
+msgstr "Permitir solo tarjetas usadas previamente con éxito"
+
+msgid "Only allow cards that have been used successfully in previous payments."
+msgstr "Solo permitir tarjetas que hayan sido usadas con éxito en pagos anteriores."
+
+msgid "Something failed getting the customer cards. Error: %s"
+msgstr "Algo falló al obtener las tarjetas del cliente. Error: %s"
+
+msgid "You have no saved cards."
+msgstr "No tienes tarjetas guardadas."
+
+msgid "One-Click payment succeeded."
+msgstr "Pago con un clic realizado con éxito."
+
+msgid "One-Click payment refused."
+msgstr "Pago con un clic rechazado."
+
+msgid "One-Click payment failure"
+msgstr "Fallo en el pago con un clic"
+
+msgid "Icon"
+msgstr "Ícono"
+
+msgid "You will be redirected to complete the payment."
+msgstr "Serás redirigido para completar el pago."
+
+msgid "Please select a card."
+msgstr "Por favor selecciona una tarjeta."
+
+msgid "Select a saved card for a faster one-click payment"
+msgstr "Selecciona una tarjeta guardada para un pago con un clic más rápido"
+
+
+
 
 

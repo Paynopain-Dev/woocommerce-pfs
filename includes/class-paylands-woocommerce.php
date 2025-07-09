@@ -95,6 +95,12 @@ class Paylands_Woocommerce {
 		//The abstract class responsible to define the Paylands Gateways for WooCommerce.
 		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/abstract-paylands-woocommerce-gateway.php';
 
+		//The class responsible to define the Paylands Gateways for WooCommerce.
+		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-gateway.php';
+
+		//The class responsible to define the Paylands Gateways One Click Payment for WooCommerce.
+		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-gateway-one-click.php';
+
 		//The class responsible to define the Paylands Gateways Main Settings for WooCommerce.
 		require_once PAYLANDS_WOOCOMMERCE_INCLUDES . '/class-paylands-woocommerce-gateway-settings.php';
 

@@ -374,6 +374,7 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   border-bottom: none;
+  font-weight: bold;
 }
 
 .paylands-tab-link.active {
@@ -516,4 +517,8 @@
   background-color: #ee1b4e;
   border-color: #ee1b4e;
   color: #fff;
+}
+
+.wc-paylands-service-title {
+  margin-left: 3px;
 }

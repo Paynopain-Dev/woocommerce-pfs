@@ -14,6 +14,18 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 
 	use Paylands_Helpers;
 
+	public $is_checkout;
+	public $testmode;
+	public $api_key;
+	public $signature;
+	public $checkout_uuid;
+	public $title;
+	public $description;
+	public $service;
+	public $secure_payment;
+	public $order_status;
+	public $image;
+
 	/**
 	 * Payland Gateway Constructor (needs to be called from child's constructor)
 	 */
@@ -30,7 +42,6 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		$this->init_form_fields();
 		$this->init_settings();
 
-		//TODO syl probar
 		$main_settings = new Paylands_Gateway_Settings();
 		$this->testmode = $main_settings->is_test_mode_active();
 		$this->api_key = $main_settings->get_api_key();
@@ -109,16 +120,19 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				'type'        => 'checkbox',
 				'description' => __( 'Enable this option if the payment will require 3D Secure', 'paylands-woocommerce' ),
 				'default'     => 'yes',
-			),
-			'uuid_service_key' => array(
+			)
+		);
+
+		if (!($this->is_checkout)) {
+			$fields['uuid_service_key'] = array(
 				'title'       => __( 'Service UUID', 'paylands-woocommerce' ),
 				'type'        => 'text',
 				'description' => __( 'Your service UUID for payments.', 'paylands-woocommerce' ),
 				'default'     => '',
 				'custom_attributes' => $custom_attributes,
 				'placeholder' => ''
-			)
-		);
+			);
+		}
 
 		$this->form_fields = apply_filters( 'paylands_gateway_fields_'.$this->id, $fields );
 	}
@@ -137,10 +151,120 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 	 * @return [type] [description]
 	 */
 	public function validate_fields() {
+		Paylands_Logger::dev_debug_log('validate_fields');
 		return true;
 	}
 
+	protected function create_paylands_order($order_id) {
+		// Inicializa API
+		$this->paylands_api_loader();
+		if ( ! $this->is_gateway_ready ) {
+			Paylands_Logger::log( 'Gateway not ready for create_paylands_order' );
+			return false;
+		}
+
+		$order 			= wc_get_order($order_id);
+		if (empty($order)) {
+			Paylands_Logger::log('error no se ha encontrado el pedido '.$order_id);
+			return false;
+		}
+		$total 			= $order->get_total();
+		$currency		= $order->get_currency();
+		$customer_id 	= $this->get_customer_id();
+		$order_names	= "{$order->get_billing_first_name()} {$order->get_billing_last_name()} - {$order->get_id()}";
+		$urls       = $this->get_actions_url( $order->get_id() );
+
+		// Llamada a createOrder
+		try {
+			Paylands_Logger::dev_debug_log('process_payment createOrder');
+			Paylands_Logger::dev_debug_log('process_payment current_gateway '.json_encode($this));//, JSON_PRETTY_PRINT));
+			if (empty($this)) {
+				Paylands_Logger::log('error no hay pasarela seleccionada');
+				return false;
+			}
+
+			$result = $this->api->createOrder(
+				$total,
+				$currency,
+				"AUTHORIZATION",
+				(string)$customer_id, // String format because is neccessary
+				$order_names,
+				(string)$order->get_id(), // String format because is neccessary
+				$this->service,
+				$this->secure_payment, 
+				$urls['callback'],
+				$order->get_checkout_order_received_url(),
+				$urls['ko'],
+				'',
+				$this->is_checkout,
+				$order
+			);
+
+		} catch ( Exception $e ) {
+			Paylands_Logger::log( 'createOrder error: ' . $e->getMessage() );
+			return false;
+		}
+
+		if ( empty( $result ) || ( $result['code'] ?? 0 ) !== 200 ) {
+			Paylands_Logger::log( $result );
+			return false;
+		}
+
+		// Guardamos localmente
+		$this->orders->save( $result );
+		return $result;
+
+	}
+
 	public function process_payment($order_id) {
+		Paylands_Logger::log('process_payment');
+		/**
+		 * Segun email de Pascual el 25/02/2025
+		 * Cambiamos la forma de gestionar los métodos de pago
+		 * - Si hay checkout uuid el método se seleccionara desde el checkout de Paylands
+		 * - Si no lo hay el método se seleccionará en WC
+		 */
+		try {
+			// Creamos la orden de pago en Paylands 
+			$payland_order = $this->create_paylands_order($order_id);
+			if ( ! $payland_order ) {
+				return [
+					'result'   => 'failure',
+					'redirect' => $this->get_actions_url( $order_id )['ko'],
+				];
+			}
+
+			$is_bizum = false;
+			if (isset($this->method_title) && !empty($this->method_title)) {
+				if (str_contains(strtolower($this->method_title), 'bizum')) {
+					$is_bizum = true;
+				}
+			}
+
+			if ($this->is_checkout) {
+				$redirect_url = $this->api->getRedirectCheckoutUrl($payland_order["order"]["token"]);
+			}elseif ($is_bizum) {
+				$redirect_url = $this->api->getRedirectBizumUrl($payland_order["order"]["token"]);
+			}else{
+				$redirect_url = $this->api->getRedirectUrl($payland_order["order"]["token"]);
+			}
+			
+			Paylands_Logger::dev_debug_log('payment redirect_url '.$redirect_url);
+
+			return array(
+				'result' 	=> 'success',
+				'redirect'	=> $redirect_url
+			);
+		} catch ( Exception $e ) {
+			return array(
+				'result' 	=> 'failure',
+				'redirect'	=> $this->get_actions_url( $order_id )['ko']
+			);
+			Paylands_Logger::log('process payment error redirect_url '.$e->getMessage());
+		}
+	}
+
+	public function process_payment_old($order_id) {
 		//Paylands_Logger::dev_debug_log('process_payment');
 		try {
 
@@ -150,14 +274,15 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				// Retrieve the order id to process payment.
 				$order 			= wc_get_order($order_id);
 				$total 			= $order->get_total();
+				$currency		= $order->get_currency();
 				$customer_id 	= $this->get_customer_id();
 				$urls 			= $this->get_actions_url( $order->get_id() );
 				$order_names	= "{$order->get_billing_first_name()} {$order->get_billing_last_name()} - {$order->get_id()}";
 
 				try {
-					Paylands_Logger::dev_debug_log('process_payment createOrder');
+					Paylands_Logger::dev_debug_log('process_payment_old createOrder');
 
-					Paylands_Logger::dev_debug_log('process_payment current_gateway '.json_encode($this));//, JSON_PRETTY_PRINT));
+					Paylands_Logger::dev_debug_log('process_payment_old current_gateway '.json_encode($this));//, JSON_PRETTY_PRINT));
 					if (empty($this)) {
 						Paylands_Logger::log('error no hay pasarela seleccionada');
 						// load error page
@@ -167,38 +292,27 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 						);
 					}
 
-					/*
-					Segun email de Pascual el 08/07/2024:
-					ahora mismo no tenemos una forma de indicar si un método de pago es de tarjeta o no porque algunos son válidos tanto para tarjeta como sin ella.
-					Lo que podemos hacer de momento es indicar en el nombre del método de pago algo tipo "[Card]". 
-					Entonces, para saber si tenéis que redirigir al checkout o a /payment/process, podéis consultar si existe el string "[Card]" dentro del nombre del método de pago. 
-					Aunque no es lo más correcto, ahora mismo es la única forma de indicarlo.
-					*/
-					$is_card = false;
-					$is_bizum = false;
-					if (isset($this->method_title) && !empty($this->method_title)) {
-						if (str_contains($this->method_title, '[Card]')) {
-							$is_card = true;
-						}elseif (str_contains(strtolower($this->method_title), 'bizum')) {
-							$is_bizum = true;
-						}
-					}
-					//$is_card = true;
-					
+					/**
+					 * Segun email de Pascual el 25/02/2025
+					 * Cambiamos la forma de gestionar los métodos de pago
+					 * - Si hay checkout uuid el método se seleccionara desde el checkout de Paylands
+					 * - Si no lo hay el método se seleccionará en WC
+					 */
 
 					$payland_order = $this->api->createOrder(
 						$total,
+						$currency,
 						"AUTHORIZATION",
 						(string)$customer_id, // String format because is neccessary
 						$order_names,
 						(string)$order->get_id(), // String format because is neccessary
 						$this->service,
-						$this->secure_payment, //TODO syl probar
+						$this->secure_payment, 
 						$urls['callback'],
 						$order->get_checkout_order_received_url(),
 						$urls['ko'],
 						'',
-						$is_card,
+						$this->is_checkout,
 						$order
 					);
 				} catch (Exception $e) {
@@ -225,7 +339,14 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 
 				$this->orders->save( $payland_order );
 
-				if ($is_card) {
+				$is_bizum = false;
+				if (isset($this->method_title) && !empty($this->method_title)) {
+					if (str_contains(strtolower($this->method_title), 'bizum')) {
+						$is_bizum = true;
+					}
+				}
+
+				if ($this->is_checkout) {
 					$redirect_url = $this->api->getRedirectCheckoutUrl($payland_order["order"]["token"]);
 				}elseif ($is_bizum) {
 					$redirect_url = $this->api->getRedirectBizumUrl($payland_order["order"]["token"]);
@@ -372,15 +493,18 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		$icon = '';
 		switch ($type) {
 			case 'card':
-            case 'nuvei':
             case 'credorax':
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/cc_visa_master.svg', PAYLANDS_PLUGIN_FILE ) );;
+            case 'nuvei':
+				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/cc.svg', PAYLANDS_PLUGIN_FILE ) );;
 				break;
 			case 'bizum':
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/bizum.png', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			case 'inespay':
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/inespay.png', PAYLANDS_PLUGIN_FILE ) );
+				break;
+			case 'one-click':
+				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/one-click-payment.png', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			default:
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/paylands-woocommerce.png', PAYLANDS_PLUGIN_FILE ) );

@@ -372,19 +372,15 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		$icon = '';
 		switch ($type) {
 			case 'card':
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/cc.svg', PAYLANDS_PLUGIN_FILE ) );;
+            case 'nuvei':
+            case 'credorax':
+				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/cc_visa_master.svg', PAYLANDS_PLUGIN_FILE ) );;
 				break;
 			case 'bizum':
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/bizum.png', PAYLANDS_PLUGIN_FILE ) );
 				break;
-			case 'nuvei':
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/nuvei.png', PAYLANDS_PLUGIN_FILE ) );
-				break;
 			case 'inespay':
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/inespay.png', PAYLANDS_PLUGIN_FILE ) );
-				break;
-			case 'credorax':
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/credorax.png', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			default:
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/paylands-woocommerce.png', PAYLANDS_PLUGIN_FILE ) );

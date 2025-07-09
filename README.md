@@ -1,7 +1,7 @@
 # Changelog
 
 ### 1.5.1
-- Plugin now allows on-click payments.
+- Plugin now allows one-click payments.
 
 - Better checkout management.
 

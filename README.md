@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.5.1
+- Plugin now allows on-click payments.
+
+- Better checkout management.
+
 ### 1.3
 - Plugin is now compatible with Woocommerce's "blocks" feature.
 

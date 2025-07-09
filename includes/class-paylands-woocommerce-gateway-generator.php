@@ -7,6 +7,7 @@ class Paylands_Gateway_GATEWAYNAME extends Paylands_WC_Gateway {
 		$this->method_title 		= 'GATEWAYTITLE (Paylands)';
 		$this->method_description 	= __( 'Payment Gateway by Paylands - GATEWAYTYPE', 'paylands-woocommerce' );
 		$this->icon 		= 'GATEWAYICON';
+		$this->is_checkout = false;
 		
 		parent::init();
 	}

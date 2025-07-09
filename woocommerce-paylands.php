@@ -11,7 +11,7 @@
  * WC tested up to: 9.6
  * Requires at least: 6.0
  * Requires PHP: 7.3
- * Version: 1.3
+ * Version: 1.5.1
  */
 
 // If this file is called directly, abort.
@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Currently plugin version.
  */
-define( 'PAYLANDS_WOOCOMMERCE_VERSION', '1.3' );
+define( 'PAYLANDS_WOOCOMMERCE_VERSION', '1.5.1' );
 define( 'PAYLANDS_ROOT_PATH', plugin_dir_path( __FILE__ ) );
 define( 'PAYLANDS_PLUGIN_FILE', __FILE__ );
 

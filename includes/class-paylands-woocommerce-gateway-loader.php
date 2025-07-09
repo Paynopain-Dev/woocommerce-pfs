@@ -164,7 +164,10 @@ class Paylands_Gateway_Loader {
 				update_option('woocommerce_paylands_services_last_change', date("Y-m-d H:i:s"));
 				//si se han añadido nuevos servicios hay que hacer la configuración inicial
 				//comprueba servicios de test
-				$new_test_services = $services['test']; //TODO syl pasar a funcion
+				$new_test_services = $services['test']; 
+				$this->generate_gateways('test', $new_test_services, $previous_services);
+				/*
+				//en la version 1.4 convertimos en funcion porque si hay checkout uuid debe levantarse solo una pasarela generica
 				if (!empty($new_test_services)) {
 					foreach ($new_test_services as $key=>$gateway) {
 						Paylands_Logger::dev_debug_log('comprobando servicio de test '.$key.' '.$gateway['type']);
@@ -181,8 +184,13 @@ class Paylands_Gateway_Loader {
 						}
 					}
 				}
+				*/
+
 				//comprueba servicios de pro
 				$new_pro_services = $services['pro'];
+				$this->generate_gateways('pro', $new_pro_services, $previous_services);
+				/*
+				//en la version 1.4 convertimos en funcion porque si hay checkout uuid debe levantarse solo una pasarela generica
 				if (!empty($new_pro_services)) {
 					foreach ($new_pro_services as $key=>$gateway) {
 						if (!isset($previous_services['pro'][$key]) || $previous_services['pro'][$key]['enabled']) {
@@ -195,7 +203,7 @@ class Paylands_Gateway_Loader {
 							}
 						}
 					}
-				}
+				}*/
 			}
 		}//si esta vacio es que es la primera carga
 
@@ -365,6 +373,9 @@ class Paylands_Gateway_Loader {
 			//cuando se indica el entorno es porque estamos en el proceso de guardado y cogemos el valor del post ya que en la bbdd aun no se ha actualizado
 			$gateways_list = $this->get_gateways_list($mode);
 		}		
+		$this->generate_gateways($mode, $gateways_list);
+		/*
+		//en la version 1.4 convertimos en funcion porque si hay checkout uuid debe levantarse solo una pasarela generica
 		if (!empty($gateways_list)) {
 			foreach ($gateways_list as $gateway) {
 				if ($gateway['enabled']) {
@@ -377,13 +388,12 @@ class Paylands_Gateway_Loader {
 			}
 		}else{
 			Paylands_Logger::dev_debug_log($from.'->paylands_payment_gateway_init no hay servicios. modo: '.$mode);
-		}
+		}*/
 	}
 
 	public function paylands_payment_resources_init() {
 		$mode = '';
 		if (is_admin() && Paylands_Gateway_Settings::is_paylands_main_settings_section()) {
-			//TODO syl comprobar si se han introducido las keys manualmente
 			if (!Paylands_Gateway_Settings::is_paylands_gateway_saving_settings()) {
 				//si estamos en la página de metodos de pago y no esta guardando
 				//comprobamos si el comercio ya tiene credenciales de producción (al inicio solo lo crean en sandbox)
@@ -403,7 +413,6 @@ class Paylands_Gateway_Loader {
 							//TODO syl actualizar tb credenciales de test?
 					}
 				}
-				
 
 				//comprueba la api a ver si hay cambios de servicios
 				$has_changed = $this->update_resources_from_api();
@@ -438,15 +447,33 @@ class Paylands_Gateway_Loader {
 			}
 			if (!empty($gateways_list)) {
 				Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway_blocks_support hay servicios '.$mode);
-				foreach ($gateways_list as $gateway) {
-					if ($gateway['enabled']) {
-						$gateway_name = $this->get_gateway_id($gateway);
-						$icon = Paylands_WC_Gateway::get_gateway_default_icon($gateway['name'], $gateway['type']);
-						$this->register_paylands_gateway_block($gateway_name, $icon);
-						//Paylands_Logger::dev_debug_log('añadida gateway block '.print_r($gateway, true));
-						//Paylands_Logger::dev_debug_log('añadida gateway block '.$gateway_class_name);
-					}else{
-						Paylands_Logger::dev_debug_log('no añadida gateway block no enabled '.$gateway['type']);
+				//pasarela de pagos con un click (a partir de v1.5)
+				Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway_blocks_support -> registrada pasarela one click');
+				$gateway_name = 'paylands_woocommerce_one_click';
+				$icon = Paylands_WC_Gateway::get_gateway_default_icon( 'One-Click Payment', 'one-click' );
+				$this->register_paylands_gateway_block($gateway_name, $icon);
+
+				if ($this->is_paylands_checkout($mode)) {
+					/**
+					 * Modificado a partir de v1.4
+					 * Si hay un checkout uuid el metodo de pago se selecciona en el checkout de paylands y 
+					 * en WC se muestra solo un metodo de pago generico
+					 */
+					Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway_blocks_support hay checkout -> registrada pasarela generica');
+					$gateway_name = 'paylands_woocommerce_payment_gateway';
+					$icon = Paylands_WC_Gateway::get_gateway_default_icon('Paylands', 'generic');
+					$this->register_paylands_gateway_block($gateway_name, $icon);
+				} else {
+					foreach ($gateways_list as $gateway) {
+						if ($gateway['enabled']) {
+							$gateway_name = $this->get_gateway_id($gateway);
+							$icon = Paylands_WC_Gateway::get_gateway_default_icon($gateway['name'], $gateway['type']);
+							$this->register_paylands_gateway_block($gateway_name, $icon);
+							//Paylands_Logger::dev_debug_log('añadida gateway block '.print_r($gateway, true));
+							//Paylands_Logger::dev_debug_log('añadida gateway block '.$gateway_class_name);
+						}else{
+							Paylands_Logger::dev_debug_log('no añadida gateway block no enabled '.$gateway['type']);
+						}
 					}
 				}
 			}else{
@@ -484,17 +511,29 @@ class Paylands_Gateway_Loader {
 			$gateways_list = $this->get_gateways_list('pro');
 			$mode = 'pro';
 		}
+		/**
+		 * Modificado a partir de v1.4
+		 * Si hay un checkout uuid el metodo de pago se selecciona en el checkout de paylands y 
+		 * en WC se muestra solo un metodo de pago generico
+		 */
 		if (!empty($gateways_list)) {
-			Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway hay servicios '.$mode);
-			foreach ($gateways_list as $gateway) {
-				if ($gateway['enabled']) {
-					$gateway_class_name = $this->generate_gateway_classname($gateway);
-					$gateways[] = $gateway_class_name;
-					//Paylands_Logger::dev_debug_log('añadida gateway '.$gateway_class_name);
-				}else{
-					Paylands_Logger::dev_debug_log('no añadida gateway no enabled '.$gateway['type']);
+			//pasarela para pagos con un click (añadida en v1.5)
+			$gateways[] = new Paylands_WC_Gateway_One_Click();
+			
+			if ($this->is_paylands_checkout($mode)) {
+				$gateways[] = new Paylands_WC_Gateway_Generic();
+			} else {
+				Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway hay servicios '.$mode);
+				foreach ($gateways_list as $gateway) {
+					if ($gateway['enabled']) {
+						$gateway_class_name = $this->generate_gateway_classname($gateway);
+						$gateways[] = $gateway_class_name;
+						//Paylands_Logger::dev_debug_log('añadida gateway '.$gateway_class_name);
+					}else{
+						Paylands_Logger::dev_debug_log('no añadida gateway no enabled '.$gateway['type']);
+					}
 				}
-			}
+			}	
 		}else{
 			Paylands_Logger::dev_debug_log('add_pnp_paylands_gateway no hay servicios '.$mode);
 		}
@@ -505,6 +544,53 @@ class Paylands_Gateway_Loader {
 	public static function get_gateway_unique_uuid($gateway) {
 		$gateway_class_name = strtolower(str_replace('-','',$gateway['uuid']));
 		return $gateway_class_name;
+	}
+
+	private function generate_gateways($mode, $services_list, $previous_services=false) {
+		Paylands_Logger::dev_debug_log('generate_gateways');
+
+		/**
+		 * Modificado a partir de v1.4
+		 * Si hay un checkout uuid el metodo de pago se selecciona en el checkout de paylands y 
+		 * en WC se muestra solo un metodo de pago generico
+		 */
+		if ($this->is_paylands_checkout()) {
+			$gateway_unique_uuid = 'paylands_gateway';
+		} else {
+			//levantamos una pasarela de pago para cada uno de los métodos disponibles
+			if (empty($previous_services)) {
+				//from paylands_payment_gateway_init
+				if (!empty($services_list)) {
+					foreach ($services_list as $gateway) {
+						if ($gateway['enabled']) {
+							$gateway_unique_uuid = $this->get_gateway_unique_uuid($gateway);
+							$this->generate_class($gateway_unique_uuid, $gateway['name'], $gateway['type']);
+							//Paylands_Logger::dev_debug_log('->declarada clase fly '.$gateway_unique_uuid.' - '.$gateway['name'].' - '.$gateway['type'].' modo: '.$mode);
+						}else{
+							Paylands_Logger::dev_debug_log('->no declarada clase fly no enabled '.$gateway['name'].' - '.$gateway['type'].' modo: '.$mode);
+						}
+					}
+				}else{
+					Paylands_Logger::dev_debug_log('->paylands_payment_gateway_init no hay servicios. modo: '.$mode);
+				}
+
+			}else{
+				//from update_resources_from api
+				if (!empty($services_list)) {
+					foreach ($services_list as $key=>$gateway) {
+						if (!isset($previous_services[$mode][$key]) || $previous_services[$mode][$key]['enabled']) {
+							//si es nuevo o lo han pasado a activo levanta la pasarela
+							if ($gateway['enabled']) {
+								Paylands_Logger::log('nuevo servicio en '.$mode.' desde api '.$key);
+								$gateway_unique_uuid = $this->get_gateway_unique_uuid($gateway);
+								$this->generate_class($gateway_unique_uuid, $gateway['name'], $gateway['type']);
+								$this->set_initial_gateway_config($gateway, false);
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private function generate_class($name, $title, $type) {

@@ -21,43 +21,55 @@ trait Paylands_Helpers {
 	 * The Paylands Gateway Api Client Instance
 	 * @var Object
 	 */
-	private $api;
+	protected $api;
 
 	/**
 	 * The Paylands Gateway WooCommerce Instance
 	 * @var Object
 	 */
-	private $gateway_main_settings;
+	protected $gateway_main_settings;
 
 	/**
 	 * Validate if the gateway has the settings field saved.
 	 * @var boolean
 	 */
-	private $is_gateway_ready;
+	protected $is_gateway_ready;
 
 	/**
 	 * The Paylands Orders Model Instance
 	 * @var Object
 	 */
-	private $orders;
+	protected $orders;
 
 	/**
 	 * The Paylands Cards Model Instance.
 	 * @var Object
 	 */
-	//private $cards;
+	//protected $cards;
 
 	/**
 	 * Load Payland Models
 	 */
-	private function load_models() {
+	protected function load_models() {
 		$this->orders 	= new Paylands_Orders();
+	}
+
+	public function is_paylands_checkout($mode='') {
+		//Paylands_Logger::dev_debug_log('is_paylands_checkout '.$mode);
+		if (!empty($this->gateway_main_settings) && $this->gateway_main_settings instanceof Paylands_Gateway_Settings) {
+			$checkout_uuid = $this->gateway_main_settings->get_checkout_uuid($mode);
+			//Paylands_Logger::dev_debug_log('is_paylands_checkout checkout_uuid '.$checkout_uuid);
+			return !empty($checkout_uuid);
+		} else {
+			return Paylands_Gateway_Settings::is_checkout_uuid_static($mode);
+		}
 	}
 
 	/**
 	 * Initialize the Paylands Api
 	 */
 	public function paylands_api_loader($mode='') {
+		Paylands_Logger::dev_debug_log('paylands_api_loader '.$mode);
 		$this->gateway_main_settings = new Paylands_Gateway_Settings();
 
 		$this->is_gateway_ready = $this->gateway_main_settings->are_keys_set($mode);
@@ -91,6 +103,7 @@ trait Paylands_Helpers {
 				$form_lang
 			);
 		}else{
+			Paylands_Logger::dev_debug_log('paylands_api_loader no_gateway_ready '.$mode);
 			$this->api = false;
 		}
 	}
@@ -144,7 +157,7 @@ trait Paylands_Helpers {
 	 *
 	 * @return array - The Action URLs
 	 */
-	private function get_actions_url( $id ) {
+	protected function get_actions_url( $id ) {
 		$checkout_url = wc_get_checkout_url().'?paylands_error=1';
 		$ko_url = add_query_arg('paylands_error', '1', $checkout_url);
 		$site_url = get_site_url();
@@ -226,7 +239,7 @@ trait Paylands_Helpers {
      * @param  array $data - The data sent from method.
      * @return json - data in json format {}
      */
-    private function response_json( $data ) {
+    protected function response_json( $data ) {
     	header("Content-Type: application/json");
     	echo json_encode( $data );
     }

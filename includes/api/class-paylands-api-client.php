@@ -21,10 +21,12 @@ class Paylands_Api_Client {
 	const POST_URL = "https://api.paylands.com/v1";
 	const SANDBOX = "/sandbox";
 	const REDIRECT_URL = "/payment/process/";
+	const DIRECT_URL = "/payment/direct/";
 	const REDIRECT_CHECKOUT_URL = "/payment/checkout/"; //para pagos con tarjeta
 	const REDIRECT_BIZUM_URL = "/payment/bizum/"; //para pagos con bizum
 	const CREATE_ORDER_URL = "/payment";
 	const CUSTOMER = "/customer";
+	const CUSTOMER_CARDS = "/customer/{customer_ext_id}/cards";
 	const SERVICES = "/client/services";
 	const RESOURCES = "/client/resources";
 
@@ -217,12 +219,22 @@ class Paylands_Api_Client {
 		return $this->getApiUrl().self::REDIRECT_URL.$token."?lang={$this->lang}";
 	}
 
+	public function getDirectUrl() {
+		return $this->getApiUrl().self::DIRECT_URL;
+	}
+
 	public function getRedirectCheckoutUrl($token) {
 		return $this->getApiUrl().self::REDIRECT_CHECKOUT_URL.$token."?lang={$this->lang}";
 	}
 
 	public function getRedirectBizumUrl($token) {
 		return $this->getApiUrl().self::REDIRECT_BIZUM_URL.$token."?lang={$this->lang}";
+	}
+
+	public function getCustomerCardsUrl($customer_ext_id) {
+		$url = $this->getApiUrl().self::CUSTOMER_CARDS;
+		$url = str_replace('{customer_ext_id}', $customer_ext_id, $url);
+		return $url;
 	}
 
 	/**
@@ -243,6 +255,11 @@ class Paylands_Api_Client {
 		return $ip;
 	}
 
+	public function postDirectPayment($data) {
+		$api_url = $this->getDirectUrl();
+		return $this->sendRequest($api_url, $data);
+	}
+
 	/**
 	 * @param float $amount
 	 * @param string $operative
@@ -258,6 +275,7 @@ class Paylands_Api_Client {
 	 */
 	public function createOrder(
 		$amount,
+		$currency,
 		$operative,
 		$customer_ext_id = '',
 		$description,
@@ -271,9 +289,9 @@ class Paylands_Api_Client {
 		$is_checkout = '',
 		$order = null
 	) {
-		Paylands_Logger::dev_debug_log('api createOrder '.$service);
-		
-		if (empty($service)) {
+		Paylands_Logger::dev_debug_log('api createOrder '.$service.' - '.$is_checkout);
+
+		if (!$is_checkout && empty($service)) {
 			Paylands_Logger::dev_debug_log('api createOrder sin servicio');
 			return false;
 		}
@@ -283,6 +301,7 @@ class Paylands_Api_Client {
 		$amount_in_cents = $this->toCents($amount);
 		$payload = [
 			"amount" => $amount_in_cents,
+			"currency" => $currency,
 			"operative" => $operative,
 			"signature" => $this->signature,
 			"description" => $description,
@@ -302,6 +321,8 @@ class Paylands_Api_Client {
 		if (!empty($customer_ext_id)) {
 			$payload['customer_ext_id'] = $customer_ext_id;
 		}
+
+		$extra_data = array();
 
 		if (!empty($is_checkout) && !empty($this->checkout_uuid)) {
 			/*
@@ -323,7 +344,6 @@ class Paylands_Api_Client {
 					}
 				}
 			}
-
 			"extra_data":{"checkout":{"uuid":"46AC4508-8601-423D-BA4E-EA696C927CF6",
 			                          "customization":{"title":null,"logo":null,"background_color":null,
 													   "accent_color":null,"text_color":null,"font":null,
@@ -374,35 +394,25 @@ class Paylands_Api_Client {
 				$customization['payment_details'] = $payment_details;
 			}
 
-			$payment_methods = array("PAYMENT_CARD","GOOGLE_PAY","APPLE_PAY");
+			//$payment_methods = array("PAYMENT_CARD","GOOGLE_PAY","APPLE_PAY");
 			//posibles valores ["PAYMENT_CARD","BIZUM","SOFORT","IDEAL","CRYPTO","PIX","VIACASH","KLARNA","GIROPAY","GOOGLE_PAY","APPLE_PAY","CLICKTOPAY"]
-			//$payment_methods = array();
+			$payment_methods = array();
 
-			$extra_data = [
-				"checkout" => array("uuid" => $this->checkout_uuid,
+			$extra_data["checkout"] = array("uuid" => $this->checkout_uuid,
 									"customization" => $customization,
-									"payment_methods" => $payment_methods)
-			];
-			$payload['extra_data'] = $extra_data;
-			Paylands_Logger::dev_debug_log('api createOrder extra data '.json_encode($extra_data));
-
-		}else if (!empty($order)) {
-			//para los otros metodos de pago que requieren la info en el extra_data (ej: nuvei)
-			$extra_data = [
-				"profile" => array("first_name" => $order->get_billing_first_name(),
-								"last_name"  => $order->get_billing_last_name(),
-								"email"      => $order->get_billing_email(),
-							),
-							"address" => array(
-								"city"       => $order->get_billing_city(),
-								"country"    => $this->convert_country_code_alpha2_to_alpha3($order->get_billing_country()),
-								"address1"   => $order->get_billing_address_1(),
-								"zip_code"   => $order->get_billing_postcode(),
-								"state_code" => $order->get_billing_state(),
-							)
-			];
-			$payload['extra_data'] = $extra_data;
+									"payment_methods" => $payment_methods);
 		}
+		//para los metodos de pago que requieren la info en el extra_data (ej: nuvei)
+		$extra_data ["profile"] = array("first_name" => $order->get_billing_first_name(),
+							"last_name"  => $order->get_billing_last_name(),
+							"email"      => $order->get_billing_email());
+		$extra_data ["address"] = array("city"       => $order->get_billing_city(),
+							"country"    => $this->convert_country_code_alpha2_to_alpha3($order->get_billing_country()),
+							"address1"   => $order->get_billing_address_1(),
+							"zip_code"   => $order->get_billing_postcode(),
+							"state_code" => $order->get_billing_state());
+		$payload['extra_data'] = $extra_data;
+		Paylands_Logger::dev_debug_log('api createOrder extra data '.json_encode($extra_data));
 
 		$api_url = $this->getCreateOrderUrl();
 
@@ -423,6 +433,55 @@ class Paylands_Api_Client {
 		$response = $this->sendGetRequest($url);
 		if (isset($response['code'])) return false;
 		return $response;
+	}
+
+	public function getCustomerCards($customer_ext_id, $validated=true) {
+		$url = $this->getCustomerCardsUrl($customer_ext_id);
+		$url = $url . '?unique=true';
+		if ($validated) {
+			$url = $url . '&status=VALIDATED';
+		}else{
+			$url = $url . '&status=ALL';
+		}
+		$response = $this->sendGetRequest($url);
+	
+		if (isset($response['code']) && $response['code'] != '200') return [];
+	
+		if (!isset($response['cards']) || !is_array($response['cards'])) return [];
+	
+		$cards = [];
+	
+		foreach ($response['cards'] as $card) {
+			if (empty($card['is_blacklisted']) && // No blacklisted
+				!empty($card['uuid']) &&         // Tiene token
+				!empty($card['expire_month']) && 
+				!empty($card['expire_year'])
+			) {
+				$current_year  = (int) date('y'); // Dos dígitos (ej: "24")
+				$current_month = (int) date('n'); // 1-12
+		
+				$card_year  = (int) $card['expire_year'];
+				$card_month = (int) $card['expire_month'];
+		
+				// No caducada
+				if ($card_year > $current_year || ($card_year === $current_year && $card_month >= $current_month)) {
+					$token = $card['uuid'];
+		
+					if (!isset($cards[$token])) {
+						$cards[$token] = [
+							'uuid'  => $card['uuid'],
+							'service_uuid' => $card['tokenization_service_uuid'],
+							'brand'  => $card['brand'] ?? '',
+							'last4'  => $card['last4'] ?? '',
+							'expiry' => str_pad($card['expire_month'], 2, '0', STR_PAD_LEFT) . '/' . $card['expire_year'],
+						];
+					}
+				}
+			}
+		}
+		
+	
+		return array_values($cards);
 	}
 
 	public function retrieveProfile($customer_id) {

@@ -97,30 +97,41 @@ class Paylands_Woocommerce_Admin {
 						'manage_woocommerce',
 						Paylands_Gateway_Settings::get_main_settings_url());
 
-		// Añadir página de personalización
-		$hook_suffix = add_submenu_page('wc-paylands',
-					__( 'Style', 'paylands-woocommerce'),
-					__( 'Style', 'paylands-woocommerce'),
-					'manage_woocommerce',
-					'wc-paylands-customization',
-					array( $this, 'render_customization_page' ));
+		if (Paylands_Gateway_Settings::is_checkout_uuid_static()) {
+			//Solo se puede personalizar si es el checkout generico de Paylands
+			// Añadir página de personalización
+			$hook_suffix = add_submenu_page('wc-paylands',
+						__( 'Style', 'paylands-woocommerce'),
+						__( 'Style', 'paylands-woocommerce'),
+						'manage_woocommerce',
+						'wc-paylands-customization',
+						array( $this, 'render_customization_page' ));
 
-		// Encolar el color picker solo en la página de personalización
-		add_action('admin_enqueue_scripts', function($hook) use ($hook_suffix) {
-			if ($hook === $hook_suffix) {
-				wp_enqueue_style('wp-color-picker');
-				wp_enqueue_script('wp-color-picker');
-	
-				// Inicializar el selector de color en los inputs con clase "colorpick"
-				wp_add_inline_script('wp-color-picker', "
-					jQuery(document).ready(function($){
-						$('.colorpick').wpColorPicker();
-					});
-				");
-			}
-		});
+			// Encolar el color picker solo en la página de personalización
+			add_action('admin_enqueue_scripts', function($hook) use ($hook_suffix) {
+				if ($hook === $hook_suffix) {
+					wp_enqueue_style('wp-color-picker');
+					wp_enqueue_script('wp-color-picker');
+		
+					// Inicializar el selector de color en los inputs con clase "colorpick"
+					wp_add_inline_script('wp-color-picker', "
+						jQuery(document).ready(function($){
+							$('.colorpick').wpColorPicker();
+						});
+					");
+				}
+			});
+		}
 
-
+		if (woocommerce_paylands_is_dev_mode()) {
+			//si esta activado el modo desarrollador muestra la página de test
+			add_submenu_page('wc-paylands',
+						__( 'Test', 'paylands-woocommerce'),
+						__( 'Test', 'paylands-woocommerce'),
+						'manage_woocommerce',
+						'wc-paylands-test',
+						array( $this, 'render_test_page' ));
+		}
 	}
 
 	public function render_menu() {
@@ -132,6 +143,46 @@ class Paylands_Woocommerce_Admin {
 		if ( file_exists( $template ) ) {
 			include $template;
 		}
+	}
+
+	public function render_test_page() {
+		$account = new Paylands_Woocommerce_Account_Connect();
+		echo '<div class="wrap woocommerce">';
+		echo '<h1>' . __('Developer test page', 'paylands-woocommerce') . '</h1>';
+
+		$customer_id = get_current_user_id();
+		$url = "https://api.paylands.com/v1/sandbox/customer/$customer_id/cards";
+		$token = base64_encode('91a6a263d1ad41c78e9f2ced29b39ab5');
+		$url = $url . '?unique=true&status=ALL';
+
+		echo '<p>Llamando a '.$url.'</p>';
+		echo '<p>Token '.$token.'</p>';
+
+        $ch = curl_init();
+
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_HTTPGET, true);
+        curl_setopt(
+            $ch,
+            CURLOPT_HTTPHEADER,
+            array(
+                "Content-Type: application/json",
+                "Authorization: Basic ".$token,
+            )
+        );
+
+        $response = json_decode(curl_exec($ch), true);
+        curl_close($ch);
+
+        if ( !$response ) {
+            echo '***ERROR RESPUESTA VACIA***';
+        }
+
+        print_r($response);
+
+		echo '</div>';
 	}
 
 	public function render_customization_page() {

@@ -687,6 +687,8 @@ class Paylands_Woocommerce_Account_Connect {
 		}
 
 		//borra las opciones de las pasarelas
+		delete_option('woocommerce_paylands_woocommerce_payment_gateway_settings');
+		delete_option('woocommerce_paylands_woocommerce_one_click_settings');
 		global $wpdb;
 		$sql = "delete from $wpdb->options where option_name like 'woocommerce_paylands_woocommerce_gateway_%'";
 		$wpdb->query($sql);

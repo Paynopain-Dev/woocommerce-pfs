@@ -146,10 +146,24 @@ trait Paylands_Helpers {
 	 * If is user logged in, load return the user id, but if not
 	 * just return a random uniqid
 	 *
-	 * @return integer - The customer id
 	 */
-	public function get_customer_id() {
-		return is_user_logged_in() ? get_current_user_id() : '';
+	public function get_customer_id($order = null) {
+		if ( ! empty($order) && is_callable( array($order, 'get_billing_email') ) ) {
+			$email = $order->get_billing_email();
+			if (!empty($email)) {
+				return $email;
+			}
+		}
+
+		if (is_user_logged_in()) {
+			$current_user = wp_get_current_user();
+			if (!empty($current_user->user_email)) {
+				return $current_user->user_email;
+			}
+			return get_current_user_id();
+		}
+		
+		return '';
 	}
 
 	/**

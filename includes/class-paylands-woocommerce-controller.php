@@ -36,7 +36,7 @@ class Paylands_Controller {
 				// Retrieve the order id to process payment.
 				$order 			= wc_get_order( (int)$_GET['order_id'] );
 				$total 			= $order->get_total();
-				$customer_id 	= $this->get_customer_id();
+				$customer_id 	= $this->get_customer_id($order);
 				$urls 			= $this->get_actions_url( $order->get_id() );
 				$order_names	= "{$order->get_billing_first_name()} {$order->get_billing_last_name()} - {$order->get_id()}";
 
@@ -73,6 +73,7 @@ class Paylands_Controller {
 
 					$payland_order = $this->api->createOrder(
 						$total,
+						$order->get_currency(),
 						"AUTHORIZATION",
 						(string)$customer_id, // String format because is neccessary
 						$order_names,

@@ -34,7 +34,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		//Paylands_Logger::dev_debug_log('abstract_gateway_init '.$this->id);
 		// Define the gateway stuffs.
 		$this->has_fields 			= false;
-		$this->support 				= array(
+		$this->supports 				= array(
 			'products',
 			'add_payment_method'
 		);
@@ -170,7 +170,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		}
 		$total 			= $order->get_total();
 		$currency		= $order->get_currency();
-		$customer_id 	= $this->get_customer_id();
+		$customer_id 	= $this->get_customer_id($order);
 		$order_names	= "{$order->get_billing_first_name()} {$order->get_billing_last_name()} - {$order->get_id()}";
 		$urls       = $this->get_actions_url( $order->get_id() );
 
@@ -206,7 +206,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		}
 
 		if ( empty( $result ) || ( $result['code'] ?? 0 ) !== 200 ) {
-			Paylands_Logger::log( $result );
+			Paylands_Logger::log( 'createOrder failed response: ' . print_r($result, true) );
 			return false;
 		}
 
@@ -228,6 +228,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 			// Creamos la orden de pago en Paylands 
 			$payland_order = $this->create_paylands_order($order_id);
 			if ( ! $payland_order ) {
+				wc_add_notice( __('Error processing payment with Paylands. Please try again or check the logs.', 'paylands-woocommerce'), 'error' );
 				return [
 					'result'   => 'failure',
 					'redirect' => $this->get_actions_url( $order_id )['ko'],
@@ -256,11 +257,12 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				'redirect'	=> $redirect_url
 			);
 		} catch ( Exception $e ) {
+			Paylands_Logger::log('process payment error abstract: '.$e->getMessage());
+			wc_add_notice( $e->getMessage(), 'error' );
 			return array(
 				'result' 	=> 'failure',
 				'redirect'	=> $this->get_actions_url( $order_id )['ko']
 			);
-			Paylands_Logger::log('process payment error redirect_url '.$e->getMessage());
 		}
 	}
 
@@ -275,7 +277,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				$order 			= wc_get_order($order_id);
 				$total 			= $order->get_total();
 				$currency		= $order->get_currency();
-				$customer_id 	= $this->get_customer_id();
+				$customer_id 	= $this->get_customer_id($order);
 				$urls 			= $this->get_actions_url( $order->get_id() );
 				$order_names	= "{$order->get_billing_first_name()} {$order->get_billing_last_name()} - {$order->get_id()}";
 

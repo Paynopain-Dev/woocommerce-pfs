@@ -277,10 +277,10 @@ class Paylands_Api_Client {
 		$amount,
 		$currency,
 		$operative,
-		$customer_ext_id = '',
+		$customer_ext_id,
 		$description,
 		$additional,
-		$service = '',
+		$service,
 		$secure,
 		$url_post,
 		$url_ok,
@@ -403,15 +403,37 @@ class Paylands_Api_Client {
 									"payment_methods" => $payment_methods);
 		}
 		//para los metodos de pago que requieren la info en el extra_data (ej: nuvei)
-		$extra_data ["profile"] = array("first_name" => $order->get_billing_first_name(),
+		$country_code = $order->get_billing_country();
+		if (empty($country_code)) {
+			// Try to retrieve WooCommerce base country as default
+			if (function_exists('WC') && isset(WC()->countries)) {
+				$country_code = WC()->countries->get_base_country();
+			}
+			// Ultimate fallback to Spain if empty
+			if (empty($country_code)) {
+				$country_code = 'ES';
+			}
+		}
+
+		$profile = array("first_name" => $order->get_billing_first_name(),
 							"last_name"  => $order->get_billing_last_name(),
 							"email"      => $order->get_billing_email());
-		$extra_data ["address"] = array("city"       => $order->get_billing_city(),
-							"country"    => $this->convert_country_code_alpha2_to_alpha3($order->get_billing_country()),
+		$address = array("city"       => $order->get_billing_city(),
+							"country"    => $this->convert_country_code_alpha2_to_alpha3($country_code),
 							"address1"   => $order->get_billing_address_1(),
 							"zip_code"   => $order->get_billing_postcode(),
 							"state_code" => $order->get_billing_state());
-		$payload['extra_data'] = $extra_data;
+
+		if (!empty($profile)) {
+			$extra_data["profile"] = $profile;
+		}
+		if (!empty($address)) {
+			$extra_data["address"] = $address;
+		}
+		
+		if (!empty($extra_data)) {
+			$payload['extra_data'] = $extra_data;
+		}
 		Paylands_Logger::dev_debug_log('api createOrder extra data '.json_encode($extra_data));
 
 		$api_url = $this->getCreateOrderUrl();

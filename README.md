@@ -7,6 +7,7 @@
 - Customer identifier will be the email instead of the ID so it's easier to look for in Paylands backoffice.
 
 
+
 ### 1.5.1
 - Plugin now allows one-click payments.
 - Better checkout management.

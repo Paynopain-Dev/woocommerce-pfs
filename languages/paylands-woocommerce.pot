@@ -392,7 +392,7 @@ msgstr ""
 msgid "You must save for the change to take effect."
 msgstr ""
 
-msgid "Your Paylands account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
+msgid "Your PaynoPain account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
 msgstr ""
 
 msgid "When you <a href=\"%s\">log in</a> and connect your Paylands account, the advanced settings are automatically filled in. If you want to view them, you can do so by clicking <span class=\"collapsible-link\">here</span>."
@@ -407,7 +407,7 @@ msgstr ""
 msgid "Enable test mode"
 msgstr ""
 
-msgid "Select the language to be used in the Paylands payment form."
+msgid "Select the language to be used in the PaynoPain payment form."
 msgstr ""
 
 msgid "Advanced Settings"
@@ -578,7 +578,7 @@ msgstr ""
 msgid "Enable this option to activate debug logs"
 msgstr ""
 
-msgid "Payment methods included in Paylands Checkout"
+msgid "Payment methods included in PaynoPain Checkout"
 msgstr ""
 
 msgid "Other payment methods"

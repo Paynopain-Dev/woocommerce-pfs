@@ -282,7 +282,7 @@ class Paylands_Gateway_Settings {
 					</div>
 				</div>
 				<div class="paylands-col-image">
-					<img class="wc-paylands-section-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/metodos-pago-paylands-1.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
+					<img class="wc-paylands-section-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/homepage-image.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
 				</div>
 			</div>
 
@@ -324,7 +324,7 @@ class Paylands_Gateway_Settings {
 								</th>
 								<td class="forminp forminp-select">
 									<select name="service-type" id="service-type">
-										<option value="Tarjeta_Paynopain"><?php _e( 'Card by Paynopain - Europe', 'paylands-woocommerce');?></option>
+										<option value="Tarjeta_Paynopain"><?php _e( 'Card by PaynoPain - Europe', 'paylands-woocommerce');?></option>
 										<option value="Bizum"><?php _e( 'Bizum - Europe', 'paylands-woocommerce');?></option>
 										<option value="GooglePay"><?php _e( 'GooglePay', 'paylands-woocommerce');?></option>
 										<option value="Applepay"><?php _e( 'Applepay', 'paylands-woocommerce');?></option>
@@ -491,7 +491,7 @@ class Paylands_Gateway_Settings {
 				</li>
 			</ul>
 
-			<span class="wc-paylands-service-title"><?php _e( 'Payment methods included in Paylands Checkout', 'paylands-woocommerce');?></span>
+			<span class="wc-paylands-service-title"><?php _e( 'Payment methods included in PaynoPain Checkout', 'paylands-woocommerce');?></span>
 			<ul id="wc-paylands-extra-service-list">
 			<?php foreach ($services as $gateway) { 
 				//echo "**service -> <pre>"; print_r($gateway); echo "</pre>";
@@ -670,12 +670,12 @@ class Paylands_Gateway_Settings {
 			$test_cards_url = "https://docs.paylands.com/docs/category/payment-services";
 			$test_mode_info = '<span class="test-mode-info-line">'.__( 'Simulate transactions using', 'paylands-woocommerce' );
 			$test_mode_info .= " <a href='$test_cards_url' target='blank'>".__( 'test payment data', 'paylands-woocommerce' )."</a>.</span>";
-			$test_mode_info .= '<span class="test-mode-info-line">'.__( 'If test mode is active, customers will NOT be able to make real payments through Woocommerce Paylands.', 'paylands-woocommerce' ).'</span>';
+			$test_mode_info .= '<span class="test-mode-info-line">'.__( 'If test mode is active, customers will NOT be able to make real payments.', 'paylands-woocommerce' ).'</span>';
 			$test_mode_info .= '<span class="test-mode-info-line">'.__( 'You must save for the change to take effect.', 'paylands-woocommerce' ).'</span>';
 
 			$is_connected = Paylands_Woocommerce_Account_Connect::is_business_connected();
 			if ($is_connected) {
-				$advanced_info = __( 'Your Paylands account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class="collapsible-link">here</span>.', 'paylands-woocommerce' );
+				$advanced_info = __( 'Your PaynoPain account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class="collapsible-link">here</span>.', 'paylands-woocommerce' );
 			}else{
 				$onboarding_url = admin_url('admin.php?page=wc-paylands');
 				//$advanced_info = __( 'Al hacer <a href="'.$onboarding_url.'">login</a> y conectar tu cuenta de Paylands las configuración avanzada se rellena automáticamente y no deberías tocarla. Si aún así quieres verla o modificarla manualmente puedes hacerlo pulsando <span class="collapsible-link">aquí</span>.', 'paylands-woocommerce' );
@@ -701,13 +701,27 @@ class Paylands_Gateway_Settings {
 				),
 				array(
 					'name'     => __( 'Payment Form Language', 'paylands-woocommerce' ),
-					'desc'     => __( 'Select the language to be used in the Paylands payment form.', 'paylands-woocommerce' ),
+					'desc'     => __( 'Select the language to be used in the PaynoPain payment form.', 'paylands-woocommerce' ),
 					'id'       => 'woocommerce_paylands_settings_form_lang',
 					'type'     => 'select',
 					'default'  => 'es',
 					'options'  => array(
 						'en' => __( 'English', 'paylands-woocommerce' ),
-						'es' => __( 'Spanish', 'paylands-woocommerce' )
+                        'es' => __( 'Spanish', 'paylands-woocommerce' ),
+                        'de' => __('Deutsch', 'paylands_woocommerce'),
+                        'pt' => __('Portuguese', 'paylands_woocommerce'),
+                        'fr' => __('French', 'paylands_woocommerce'),
+                        'ca' => __('Catalan', 'paylands_woocommerce'),
+                        'it' => __('Italian', 'paylands_woocommerce'),
+                        'hr' => __('Croatian', 'paylands_woocommerce'),
+                        'he' => __('Hebrew', 'paylands_woocommerce'),
+                        'jp' => __('Japanese', 'paylands_woocommerce'),
+                        'nl' => __('Dutch', 'paylands_woocommerce'),
+                        'ru' => __('Russian', 'paylands_woocommerce'),
+                        'hu' => __('Hungarian', 'paylands_woocommerce'),
+                        'pl' => __('Polish', 'paylands_woocommerce'),
+                        'zh-ch' => __('Chinese', 'paylands_woocommerce'),
+                        'ro' => __('Romanian', 'paylands_woocommerce'),
 					),
 				),
 				array(

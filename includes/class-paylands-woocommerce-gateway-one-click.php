@@ -3,7 +3,7 @@ class Paylands_WC_Gateway_One_Click extends Paylands_WC_Gateway {
 
 	public function __construct() {
 		$this->id                 = 'paylands_woocommerce_one_click';
-		$this->method_title       = 'Paylands One-Click Payment';
+		$this->method_title       = 'PaynoPain One-Click Payment';
 		$this->method_description = __( 'Select a saved card for a faster one-click payment', 'paylands-woocommerce' );
 		$this->icon               = $this->get_gateway_default_icon( 'One-Click Payment', 'one-click' );
 		$this->is_checkout        = false;

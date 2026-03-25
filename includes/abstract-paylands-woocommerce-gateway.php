@@ -509,7 +509,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/one-click-payment.png', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			default:
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/paylands-woocommerce.png', PAYLANDS_PLUGIN_FILE ) );
+				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/paynopain.svg', PAYLANDS_PLUGIN_FILE ) );
 		}
 		return $icon;
 	}

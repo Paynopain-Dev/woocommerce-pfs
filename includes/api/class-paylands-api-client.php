@@ -107,7 +107,7 @@ class Paylands_Api_Client {
 	 * @return float
 	 */
 	private function toCents($number) {
-		return floor(100 * $number);
+		return round(100 * $number);
 	}
 
 	/**

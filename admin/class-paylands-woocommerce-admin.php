@@ -77,8 +77,8 @@ class Paylands_Woocommerce_Admin {
 
 		$menu_icon = 'data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iMzAuMDAwMDAwcHQiIGhlaWdodD0iMzAuMDAwMDAwcHQiIHZpZXdCb3g9IjAgMCAzMC4wMDAwMDAgMzAuMDAwMDAwIgogcHJlc2VydmVBc3BlY3RSYXRpbz0ieE1pZFlNaWQgbWVldCI+Cgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLjAwMDAwMCwzMC4wMDAwMDApIHNjYWxlKDAuMTAwMDAwLC0wLjEwMDAwMCkiCmZpbGw9IiMwMDAwMDAiIHN0cm9rZT0ibm9uZSI+CjxwYXRoIGQ9Ik03MSAyNDUgYy00NCAtMzggLTU3IC04NiAtMzcgLTE0MCAyMSAtNTIgNTYgLTc4IDExMiAtNzkgNzggLTIgMTI0CjQ2IDEyNCAxMjkgMCA0MCAtNSA1MiAtMzQgODEgLTMwIDMwIC00MCAzNCAtODQgMzQgLTM5IDAgLTU3IC02IC04MSAtMjV6Cm0xMjEgLTQ2IGMyNiAtMTkgMjkgLTI2IDI1IC01NiAtOCAtNDkgLTI0IC02MyAtNjcgLTYzIC00MyAwIC01OSAxNCAtNjcgNjMKLTQgMjkgLTEgMzcgMjIgNTUgMzUgMjcgNDkgMjcgODcgMXoiLz4KPC9nPgo8L3N2Zz4K';
 
-		add_menu_page( __( 'Paylands', 'paylands-woocommerce'),
-					   __( 'Paylands', 'paylands-woocommerce'),
+		add_menu_page( __( 'PaynoPain', 'paylands-woocommerce'),
+					   __( 'PaynoPain', 'paylands-woocommerce'),
 					   'manage_woocommerce',
 					   'wc-paylands',
 					   array( $this, 'render_menu' ), 
@@ -224,7 +224,7 @@ class Paylands_Woocommerce_Admin {
 			<div id="paylands-dev-mode-notice" class="notice notice-paylands">
 				<p>
 					<b><?php esc_html_e( 'DEV mode active: ', 'paylands-woocommerce' ); ?></b>
-					<?php esc_html_e( "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce Paylands.", 'paylands-woocommerce' ); ?>
+					<?php esc_html_e( "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce PaynoPain.", 'paylands-woocommerce' ); ?>
 				</p>
 			</div>
 			<?php
@@ -240,7 +240,7 @@ class Paylands_Woocommerce_Admin {
 			<div id="paylands-test-mode-notice" class="notice notice-paylands">
 				<p>
 					<b><?php esc_html_e( 'Test mode is active: ', 'paylands-woocommerce' ); ?></b>
-					<?php esc_html_e( "Customers can't make real purchases through WooCommerce Paylands.", 'paylands-woocommerce' ); ?>
+					<?php esc_html_e( "Customers can't make real purchases through WooCommerce PaynoPain.", 'paylands-woocommerce' ); ?>
 					<?php echo('<a href="' . esc_attr(Paylands_Gateway_Settings::get_main_settings_url()) . '" class="wc-paylands-button wc-paylands-button-secondary">' . esc_html__( 'Settings', 'paylands-woocommerce' ) . '</a>'); ?>
 				</p>
 			</div>
@@ -256,7 +256,7 @@ class Paylands_Woocommerce_Admin {
 			?>
 			<div id="paylands-onboarding-notice" class="notice notice-paylands is-dismissible">
 				<p>
-					<b><?php esc_html_e( 'Your Paylands account is not ready yet.', 'paylands-woocommerce' ); ?></b>
+					<b><?php esc_html_e( 'Your PaynoPain account is not ready yet.', 'paylands-woocommerce' ); ?></b>
 					<?php esc_html_e( "Start here to configure you account", 'paylands-woocommerce' ); ?>
 					<?php echo('<a href="' . esc_attr($this->admin_page_url) . '" class="wc-paylands-button wc-paylands-button-secondary">' . esc_html__( 'Let\'s go', 'paylands-woocommerce' ) . '</a>'); ?>
 				</p>

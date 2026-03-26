@@ -4,7 +4,7 @@ class Paylands_Gateway_GATEWAYNAME extends Paylands_WC_Gateway {
 	public function __construct() {
 		// Define the gateway stuffs.
 		$this->id 					= 'paylands_woocommerce_gateway_GATEWAYNAME';
-		$this->method_title 		= 'GATEWAYTITLE (Paylands)';
+		$this->method_title 		= 'GATEWAYTITLE (PaynoPain)';
 		$this->method_description 	= __( 'Payment Gateway by PaynoPain - GATEWAYTYPE', 'paylands-woocommerce' );
 		$this->icon 		= 'GATEWAYICON';
 		$this->is_checkout = false;

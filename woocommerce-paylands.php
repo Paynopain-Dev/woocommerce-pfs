@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: WooCommerce Paylands
+ * Plugin Name: WooCommerce PaynoPain
  * Plugin URI: https://docs.paylands.com/docs/ecommerce/plugin-woocommerce
- * Description: Accept payments on your store using Paylands gateways.
- * Author: Paylands
- * Author URI: https://paylands.com/pasarela-pago-ecommerce/
+ * Description: Accept payments on your store using PaynoPain gateways.
+ * Author: PaynoPain
+ * Author URI: https://paynopain.com
  * Text Domain: paylands-woocommerce
  * Domain Path: /languages
  * WC requires at least: 7.5
@@ -53,7 +53,7 @@ define('PAYLANDS_HELP_EMAIL', "soporte@paylands.com");
  * WooCommerce fallback notice.
  */
 function woocommerce_paylands_missing_wc_notice() {
-	echo '<div class="error"><p><strong>' . sprintf( esc_html__( 'Paylands requires WooCommerce to be installed and active. You can download %s here.', 'paylands-woocommerce' ), '<a href="https://woocommerce.com/" target="_blank">WooCommerce</a>' ) . '</strong></p></div>';
+	echo '<div class="error"><p><strong>' . sprintf( esc_html__( 'PaynoPain requires WooCommerce to be installed and active. You can download %s here.', 'paylands-woocommerce' ), '<a href="https://woocommerce.com/" target="_blank">WooCommerce</a>' ) . '</strong></p></div>';
 }
 
 /**

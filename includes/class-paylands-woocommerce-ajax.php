@@ -128,7 +128,7 @@ class Paylands_WooCommerce_Ajax {
             $message .= "ID del comercio: $merchant_id\n";
             $message .= "Nombre del servicio: $service_name\n";
             $message .= "Tipo de servicio: $service_type";
-            $result = wp_mail($email, "Solicitud nuevo servicio desde Plugin Paylands Woocommerce", $message);
+            $result = wp_mail($email, "Solicitud nuevo servicio desde Plugin PaynoPain Woocommerce", $message);
         }
 
         if ($result) {

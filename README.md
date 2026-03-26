@@ -4,7 +4,7 @@
 - Fixed some deprecation warnings.
 - Some logs were not showing up in Paylands API.
 - Fixed profile's mandatory data.
-- Customer identifier will be the email instead of the ID so it's easier to look for in Paylands backoffice.
+- Customer identifier will be the email instead of the ID so it's easier to look for in PaynoPain backoffice.
 
 
 

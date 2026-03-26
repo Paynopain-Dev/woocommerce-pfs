@@ -162,7 +162,7 @@ class Paylands_Customization_Settings {
 			array(
 				'name' => __( 'Style Customization', 'paylands-woocommerce' ),
 				'type' => 'title',
-				'desc' => __('Configure the visual appearance of the Paylands card payment form using the following settings. Fields that are not indicated will take the default value.', 'paylands-woocommerce'),
+				'desc' => __('Configure the visual appearance of the PaynoPain card payment form using the following settings. Fields that are not indicated will take the default value.', 'paylands-woocommerce'),
 			),
 			array(
 				'title' => __('Title', 'paylands-woocommerce'),

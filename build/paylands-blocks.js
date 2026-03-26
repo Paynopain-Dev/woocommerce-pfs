@@ -22,13 +22,13 @@
         const Label = () => createElement(
             'div',
             { className: 'paylands-payment-label' },
-            createElement( 'span', null, title ),
             icon &&
                 createElement( 'img', {
                     src:   icon,
                     alt:   __( 'Icon', 'woocommerce-paylands' ),
-                    style: { marginLeft: '10px', maxHeight: '30px' },
-                } )
+                    style: { marginLeft: '10px', marginRight: '10px', maxHeight: '30px' },
+                } ),
+            createElement( 'span', null, title )
         );
 
         // --- Componente genérico (redirect message) ---

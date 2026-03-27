@@ -610,7 +610,7 @@ class Paylands_Gateway_Settings {
 					<?php } ?>
 				</div>
 			</li>
-			<?
+			<?php
 		}
 	}
 

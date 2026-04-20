@@ -75,6 +75,34 @@ function woocommerce_paylands_email() {
 function woocommerce_paylands_activate() {
 	require_once PAYLANDS_ROOT_PATH . 'includes/class-paylands-woocommerce-activator.php';
 	Paylands_Woocommerce_Activator::activate();
+
+//    $checkoutOptionName = 'woocommerce_paylands_woocommerce_gateway_settings';
+//    $oneClickOptionName = 'woocommerce_paylands_woocommerce_one_click_settings';
+//
+//    $checkoutDefaults = array(
+//            'enabled' => 'yes',
+//            'title' => 'Pay using different payment methods available',
+//            'description' => 'You will be redirected to complete the payment.',
+//            'image' => '',
+//            'order_status' => 'default',
+//            'pnp_secure_payments' => 'yes',
+//    );
+//
+//    if (get_option($checkoutOptionName) === false) {
+//        add_option($checkoutOptionName, $checkoutDefaults);
+//    }
+//
+//    $oneClickDefaults = array(
+//            'enabled' => 'yes',
+//            'title' => 'PaynoPain One-Click Payments',
+//            'description' => 'Select a saved card for a faster one-click payment',
+//            'image' => '',
+//            'order_status' => 'default',
+//            'only_successful_cards' => 'no'
+//    );
+//    if (get_option($oneClickOptionName) === false || empty(get_option($oneClickOptionName))) {
+//        update_option($oneClickOptionName, $oneClickDefaults);
+//    }
 }
 
 /**

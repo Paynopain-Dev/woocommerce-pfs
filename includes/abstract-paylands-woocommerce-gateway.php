@@ -86,7 +86,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				'type'        => 'checkbox',
 				'label'       => __( 'Activate', 'paylands-woocommerce' ).' '.$this->method_title,
 				'description' => __( 'If the method is marked as active, it will appear as a payment option on the checkout page.', 'paylands-woocommerce' ),
-				'default'     => 'yes'
+				'default'     => 'no'
 			),
 			'title' => array(
 				'title'       => __( 'Title', 'paylands-woocommerce' ),
@@ -508,7 +508,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/inespay.png', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			case 'one-click':
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/one-click-payment.png', PAYLANDS_PLUGIN_FILE ) );
+				$icon = esc_url_raw( plugins_url( 'admin/assets/images/paynopain.svg', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			default:
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/paynopain.svg', PAYLANDS_PLUGIN_FILE ) );

@@ -26,7 +26,7 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 	public $order_status;
 	public $image;
 
-	/**
+    /**
 	 * Payland Gateway Constructor (needs to be called from child's constructor)
 	 */
 	public function init() {
@@ -55,6 +55,8 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 		$this->secure_payment 	= 'yes' === $this->get_option( 'pnp_secure_payments' ); //TODO syl probar
 		$this->order_status		= $this->get_option( 'order_status' );
 		$this->image		= $this->get_option( 'image' );
+        $this->method_title = '';
+        $this->method_description = ' ';
 
 		//reemplazamos el logo si lo han personalizado
 		if (!empty($this->image)) $this->icon = $this->image;
@@ -506,10 +508,10 @@ abstract class Paylands_WC_Gateway extends WC_Payment_Gateway {
 				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/inespay.png', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			case 'one-click':
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/one-click-payment.png', PAYLANDS_PLUGIN_FILE ) );
+				$icon = esc_url_raw( plugins_url( 'admin/assets/images/paynopain.svg', PAYLANDS_PLUGIN_FILE ) );
 				break;
 			default:
-				$icon = esc_url_raw( plugins_url( 'admin/assets/images/methods/paylands-woocommerce.png', PAYLANDS_PLUGIN_FILE ) );
+				$icon = esc_url_raw( plugins_url( 'admin/assets/images/paynopain.svg', PAYLANDS_PLUGIN_FILE ) );
 		}
 		return $icon;
 	}

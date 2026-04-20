@@ -37,7 +37,7 @@ if ($account->is_account_set()) {
                 if ($status == "PENDING_VALIDATION") { ?>
 
                     <div id="wc-paylands-get-started">
-                        <h1 class="wc-paylands-main-title"><?php _e( 'Your Paylands account is connected. We are validating your business.', 'paylands-woocommerce');?></h1>    
+                        <h1 class="wc-paylands-main-title"><?php _e( 'Your PaynoPain account is connected. We are validating your business.', 'paylands-woocommerce');?></h1>
                         <div class="paylands-cols">
                             <div class="paylands-col1">
                                 <div id="paylands-login-info">
@@ -52,7 +52,7 @@ if ($account->is_account_set()) {
                                 <p><?php _e( 'Thank you!', 'paylands-woocommerce');?></p>
                             </div>
                             <div class="paylands-col1">
-                                <img id="get-starged-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/pasarela-pagos-online.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
+                                <img id="get-starged-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/homepage-image.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
                             </div>
                         </div>
                     </div>
@@ -62,16 +62,16 @@ if ($account->is_account_set()) {
                 } else { ?>
 
                     <div id="wc-paylands-get-started">
-                        <h1 class="wc-paylands-main-title"><?php _e( 'Start accepting payments with Woocommerce Paylands', 'paylands-woocommerce');?></h1>
+                        <h1 class="wc-paylands-main-title"><?php _e( 'Start accepting payments with PaynoPain', 'paylands-woocommerce');?></h1>
                         <div class="paylands-cols">
                             <div class="paylands-col1">
-                                <p><?php _e( 'Paylands is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers.', 'paylands-woocommerce');?></p>
-                                <p><?php _e( 'No matter if your company is large or small, Paylands offers the most innovative payment tools and the best customer support.', 'paylands-woocommerce');?></p>                 
+                                <p style="text-align:justify;"><?php _e( 'PaynoPain is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers.', 'paylands-woocommerce');?></p>
+                                <p style="text-align:justify;"><?php _e( 'No matter if your company is large or small, PaynoPain offers the most innovative payment tools and the best customer support.', 'paylands-woocommerce');?></p>
                                 <p><?php _e( 'Create your account in just a few steps.', 'paylands-woocommerce');?></p>
                                 <a href="<?php echo $account->get_create_account_url();?>"  target="_blank" class="wc-paylands-button"><?php _e( 'Okay, let’s do this!', 'paylands-woocommerce');?></a>
                                 <a id="wc-paylands-login-button" href="" class="wc-paylands-button wc-paylands-button-secondary"><?php _e( 'I already have an account', 'paylands-woocommerce');?></a>
                                 <div id="wc-paylands-login-form-container" style="display: none;">
-                                    <h3><?php _e( 'Log in with your Paylands account', 'paylands-woocommerce');?></h3>
+                                    <h3><?php _e( 'Log in with your PaynoPain account', 'paylands-woocommerce');?></h3>
                                     <p class="wc-paylands-small-text"><?php _e( 'If you don’t have an account, create one by registering your business', 'paylands-woocommerce');?> <a href="<?php echo $account->get_create_account_url();?>" target="_blank"><?php _e( 'here', 'paylands-woocommerce');?></a>.</p>
                                     <form id="wc-paylands-login-form" action="" method="">
                                         <div class="wc-paylands-form-row">
@@ -90,7 +90,7 @@ if ($account->is_account_set()) {
                                 </div>
                             </div>
                             <div class="paylands-col1">
-                                <img id="get-starged-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/pasarela-pagos-online.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
+                                <img id="get-starged-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/homepage-image.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
                             </div>
                         </div>
                     </div>
@@ -102,7 +102,7 @@ if ($account->is_account_set()) {
              *******************/
             } else { ?>
                 <div id="wc-paylands-get-started">
-                    <h1 class="wc-paylands-main-title"><?php _e( 'Your Paylands account is connected, and your business is validated. You can now start selling!', 'paylands-woocommerce');?></h1>
+                    <h1 class="wc-paylands-main-title"><?php _e( 'Your PaynoPain account is connected, and your business is validated. You can now start selling!', 'paylands-woocommerce');?></h1>
                     <div class="paylands-cols">
                         <div class="paylands-col1">
                             <div id="paylands-login-info">
@@ -116,7 +116,7 @@ if ($account->is_account_set()) {
                             <p><a href="<?php echo admin_url('admin.php?page=wc-settings&tab=checkout&section=paylands_woocommerce_gateway')?>" class="wc-paylands-button wc-paylands-button-secondary"><?php _e( 'View payment methods', 'paylands-woocommerce');?></a></p>
                         </div>
                         <div class="paylands-col1">
-                            <img id="get-starged-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/pasarela-pagos-online.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
+                            <img id="get-starged-image" src="<?php echo esc_url_raw( plugins_url( 'admin/assets/images/homepage-image.png', PAYLANDS_PLUGIN_FILE ) ); ?>" alt=""/>
                         </div>
                     </div>
                 </div>
@@ -142,7 +142,7 @@ if ($account->is_account_set()) {
                 </div>
             </div>          
 
-            <p class="wc-paylands-footer-small-link"><?php _e('Get to know us at', 'paylands-woocommerce');?> <a href="https://paylands.com" target="_blank">Paylands.com</a></p>
+            <p class="wc-paylands-footer-small-link"><?php _e('Get to know us at', 'paylands-woocommerce');?> <a href="https://paynopain.com" target="_blank">PaynoPain.com</a></p>
             <?php woocommerce_paylands_print_help_link(); ?>
         </div>
     </div>
@@ -156,7 +156,7 @@ if ($account->is_account_set()) {
             <div class="wc-paylands-step">
                 <div class="wc-paylands-step-num">1</div>
                 <h3><?php _e( 'Create and connect your account', 'paylands-woocommerce');?></h3>
-                <p><?php _e( 'The first step is to create your Paylands account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account.', 'paylands-woocommerce');?></p>
+                <p><?php _e( 'The first step is to create your PaynoPain account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account.', 'paylands-woocommerce');?></p>
             </div>
             <div class="wc-paylands-step">
                 <div class="wc-paylands-step-num">2</div>

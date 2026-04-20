@@ -20,7 +20,7 @@ msgstr ""
 msgid "Style"
 msgstr ""
 
-msgid "Configure the visual appearance of the Paylands card payment form using the following settings. Fields that are not indicated will take the default value."
+msgid "Configure the visual appearance of the PaynoPain card payment form using the following settings. Fields that are not indicated will take the default value."
 msgstr ""
 
 msgid "Title"
@@ -80,13 +80,13 @@ msgstr ""
 msgid "DEV mode active: "
 msgstr ""
 
-msgid "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce Paylands."
+msgid "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce PaynoPain."
 msgstr ""
 
 msgid "Test mode is active: "
 msgstr ""
 
-msgid "Customers can't make real purchases through WooCommerce Paylands."
+msgid "Customers can't make real purchases through WooCommerce PaynoPain."
 msgstr ""
 
 msgid "Settings"
@@ -98,7 +98,7 @@ msgstr ""
 msgid "Test mode"
 msgstr ""
 
-msgid "Your Paylands account is not ready yet."
+msgid "Your PaynoPain account is not ready yet."
 msgstr ""
 
 msgid "Start here to configure you account"
@@ -110,7 +110,7 @@ msgstr ""
 msgid "Log in"
 msgstr ""
 
-msgid "Your Paylands account is connected. We are validating your business."
+msgid "Your PaynoPain account is connected. We are validating your business."
 msgstr ""
 
 msgid "Business ID:"
@@ -131,13 +131,13 @@ msgstr ""
 msgid "Thank you!"
 msgstr ""
 
-msgid "Start accepting payments with Woocommerce Paylands"
+msgid "Start accepting payments with PaynoPain"
 msgstr ""
 
-msgid "Paylands is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers."
+msgid "PaynoPain is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers."
 msgstr ""
 
-msgid "No matter if your company is large or small, Paylands offers the most innovative payment tools and the best customer support."
+msgid "No matter if your company is large or small, PaynoPain offers the most innovative payment tools and the best customer support."
 msgstr ""
 
 msgid "Create your account in just a few steps."
@@ -149,7 +149,7 @@ msgstr ""
 msgid "I already have an account"
 msgstr ""
 
-msgid "Log in with your Paylands account"
+msgid "Log in with your PaynoPain account"
 msgstr ""
 
 msgid "If you don’t have an account, create one by registering your business"
@@ -158,7 +158,7 @@ msgstr ""
 msgid "here"
 msgstr ""
 
-msgid "Your Paylands account is connected, and your business is validated. You can now start selling!"
+msgid "Your PaynoPain account is connected, and your business is validated. You can now start selling!"
 msgstr ""
 
 msgid "Your payment methods have been successfully configured for you to start selling. Review your payment methods and activate the ones you wish to use on the website."
@@ -179,7 +179,7 @@ msgstr ""
 msgid "Create and connect your account"
 msgstr ""
 
-msgid "The first step is to create your Paylands account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account."
+msgid "The first step is to create your PaynoPain account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account."
 msgstr ""
 
 msgid "We validate your business"
@@ -392,7 +392,7 @@ msgstr ""
 msgid "You must save for the change to take effect."
 msgstr ""
 
-msgid "Your Paylands account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
+msgid "Your PaynoPain account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
 msgstr ""
 
 msgid "When you <a href=\"%s\">log in</a> and connect your Paylands account, the advanced settings are automatically filled in. If you want to view them, you can do so by clicking <span class=\"collapsible-link\">here</span>."
@@ -407,7 +407,7 @@ msgstr ""
 msgid "Enable test mode"
 msgstr ""
 
-msgid "Select the language to be used in the Paylands payment form."
+msgid "Select the language to be used in the PaynoPain payment form."
 msgstr ""
 
 msgid "Advanced Settings"
@@ -578,7 +578,7 @@ msgstr ""
 msgid "Enable this option to activate debug logs"
 msgstr ""
 
-msgid "Payment methods included in Paylands Checkout"
+msgid "Payment methods included in PaynoPain Checkout"
 msgstr ""
 
 msgid "Other payment methods"

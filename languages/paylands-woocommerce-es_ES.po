@@ -20,8 +20,8 @@ msgstr "Personalización del estilo"
 msgid "Style"
 msgstr "Personalización"
 
-msgid "Configure the visual appearance of the Paylands card payment form using the following settings. Fields that are not indicated will take the default value."
-msgstr "Configura el aspecto visual del formulario para pagos con tarjeta de Paylands utilizando los siguientes ajustes. Los campos que no se indiquen tomarán el valor por defecto."
+msgid "Configure the visual appearance of the PaynoPain card payment form using the following settings. Fields that are not indicated will take the default value."
+msgstr "Configura el aspecto visual del formulario para pagos con tarjeta de PaynoPain utilizando los siguientes ajustes. Los campos que no se indiquen tomarán el valor por defecto."
 
 msgid "Title"
 msgstr "Título"
@@ -80,14 +80,14 @@ msgstr "URL de la página de términos y condiciones y/o política de privacidad
 msgid "DEV mode active: "
 msgstr "Modo desarrollador está activo: "
 
-msgid "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce Paylands."
-msgstr "El proceso de onboarding y todas las trasacciones son simuladas. Los clientes no pueden hacer comprar reales a través de WooCommerce Paylands."
+msgid "Onboarding process and all transactions are simulated. Customers can't make real purchases through WooCommerce PaynoPain."
+msgstr "El proceso de onboarding y todas las trasacciones son simuladas. Los clientes no pueden hacer comprar reales a través de WooCommerce PaynoPain."
 
 msgid "Test mode is active: "
 msgstr "El modo pruebas está activo: "
 
-msgid "Customers can't make real purchases through WooCommerce Paylands."
-msgstr "Los clientes no pueden hacer compras reales a través de WooCommerce Paylands."
+msgid "Customers can't make real purchases through WooCommerce PaynoPain."
+msgstr "Los clientes no pueden hacer compras reales a través de WooCommerce PaynoPain."
 
 msgid "Settings"
 msgstr "Ajustes"
@@ -98,8 +98,8 @@ msgstr "Idioma del formulario de pago"
 msgid "Test mode"
 msgstr "Modo de pruebas"
 
-msgid "Your Paylands account is not ready yet."
-msgstr "Tu cuenta de Paylands no está conectada aún."
+msgid "Your PaynoPain account is not ready yet."
+msgstr "Tu cuenta de PaynoPain no está conectada aún."
 
 msgid "Start here to configure you account"
 msgstr "Empieza aquí para configurar tu cuenta"
@@ -110,8 +110,8 @@ msgstr "Vamos"
 msgid "Log in"
 msgstr "Acceder"
 
-msgid "Your Paylands account is connected. We are validating your business."
-msgstr "Tu cuenta de Paylands está conectada. Estamos validando tu comercio."
+msgid "Your PaynoPain account is connected. We are validating your business."
+msgstr "Tu cuenta de PaynoPain está conectada. Estamos validando tu comercio."
 
 msgid "Business ID:"
 msgstr "Id de comercio:"
@@ -131,14 +131,14 @@ msgstr "Desconectar cuenta"
 msgid "Thank you!"
 msgstr "¡Gracias!"
 
-msgid "Start accepting payments with Woocommerce Paylands"
-msgstr "Empieza a cobrar con Woocommerce Paylands"
+msgid "Start accepting payments with PaynoPain"
+msgstr "Empieza a cobrar a tus clientes con PaynoPain"
 
-msgid "Paylands is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers."
-msgstr "Paylands es la pasarela de pago perfecta para tiendas online eCommerce que necesiten cobrar a sus clientes con total seguridad y comodidad."
+msgid "PaynoPain is the perfect payment gateway for online eCommerce stores that need to securely and conveniently charge their customers."
+msgstr "PaynoPain es la pasarela de pago perfecta para tiendas online eCommerce que necesiten cobrar a sus clientes con total seguridad y comodidad."
 
-msgid "No matter if your company is large or small, Paylands offers the most innovative payment tools and the best customer support."
-msgstr "No importa si tu empresa es grande o pequeña, en Paylands encontrarás las herramientas de cobro más innovadoras y la mejor atención al cliente."
+msgid "No matter if your company is large or small, PaynoPain offers the most innovative payment tools and the best customer support."
+msgstr "No importa si tu empresa es grande o pequeña, en PaynoPain encontrarás las herramientas de cobro más innovadoras y la mejor atención al cliente."
 
 msgid "Create your account in just a few steps."
 msgstr "Crea tu cuenta en unos pocos pasos."
@@ -149,8 +149,8 @@ msgstr "¡Ok, vamos a ello!"
 msgid "I already have an account"
 msgstr "Ya tengo cuenta"
 
-msgid "Log in with your Paylands account"
-msgstr "Accede con tu cuenta de Paylands"
+msgid "Log in with your PaynoPain account"
+msgstr "Accede con tu cuenta de PaynoPain"
 
 msgid "If you don’t have an account, create one by registering your business"
 msgstr "Si no tienes cuenta, debes crearla registrando tu comercio"
@@ -158,8 +158,8 @@ msgstr "Si no tienes cuenta, debes crearla registrando tu comercio"
 msgid "here"
 msgstr "aquí"
 
-msgid "Your Paylands account is connected, and your business is validated. You can now start selling!"
-msgstr "Tu cuenta de Paylands está conectada y tu comercio validado. ¡Ya puedes empezar a vender!"
+msgid "Your PaynoPain account is connected, and your business is validated. You can now start selling!"
+msgstr "Tu cuenta de PaynoPain está conectada y tu comercio validado. ¡Ya puedes empezar a vender!"
 
 msgid "Your payment methods have been successfully configured for you to start selling. Review your payment methods and activate the ones you wish to use on the website."
 msgstr "Tus métodos de pago se han configurado correctamente para empezar a vender. Revisa tus métodos de pago y activa los que quieras utilizar en la web."
@@ -179,8 +179,8 @@ msgstr "¿Cómo funciona?"
 msgid "Create and connect your account"
 msgstr "Crea y conecta tu cuenta"
 
-msgid "The first step is to create your Paylands account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account."
-msgstr "El primer paso es crear tu cuenta de Paylands. Se te abrirá un formulario donde deberás rellenar los datos relevantes de tu empresa para que la validemos. En seguida recibirás un email con el acceso a tu cuenta."
+msgid "The first step is to create your PaynoPain account. A form will open where you need to fill in your company’s relevant details for validation. You will quickly receive an email with access to your account."
+msgstr "El primer paso es crear tu cuenta de PaynoPain. Se te abrirá un formulario donde deberás rellenar los datos relevantes de tu empresa para que la validemos. En seguida recibirás un email con el acceso a tu cuenta."
 
 msgid "We validate your business"
 msgstr "Válidamos tu comercio"
@@ -392,7 +392,7 @@ msgstr "Si el modo de pruebas está activo, los clientes NO podrán realizar pag
 msgid "You must save for the change to take effect."
 msgstr "Debes guardar para que el cambio tenga efecto."
 
-msgid "Your Paylands account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
+msgid "Your PaynoPain account is connected, and the advanced configuration has been automatically filled in. If you want to view it, you can do so by clicking <span class=\"collapsible-link\">here</span>."
 msgstr "Tu cuenta de Paylands está conectada y la configuración avanzada se ha rellenado automáticamente. Si quieres verla puedes hacerlo pulsando <span class=\"collapsible-link\">aquí</span>."
 
 msgid "When you <a href=\"%s\">log in</a> and connect your Paylands account, the advanced settings are automatically filled in. If you want to view them, you can do so by clicking <span class=\"collapsible-link\">here</span>."
@@ -407,8 +407,8 @@ msgstr "Modo de pruebas"
 msgid "Enable test mode"
 msgstr "Activar el modo de pruebas"
 
-msgid "Select the language to be used in the Paylands payment form."
-msgstr "Selecciona el idioma que se usará en el formulario de pago de Paylands."
+msgid "Select the language to be used in the PaynoPain payment form."
+msgstr "Selecciona el idioma que se usará en el formulario de pago de PaynoPain."
 
 msgid "Advanced Settings"
 msgstr "Configuración avanzada"
@@ -578,8 +578,8 @@ msgstr "Activar registros de depuración"
 msgid "Enable this option to activate debug logs"
 msgstr "Marca esta opción para activar los registros de depuración"
 
-msgid "Payment methods included in Paylands Checkout"
-msgstr "Métodos de pago incluidos en el checkout de Paylands"
+msgid "Payment methods included in PaynoPain Checkout"
+msgstr "Métodos de pago incluidos en el checkout de PaynoPain"
 
 msgid "Other payment methods"
 msgstr "Otros métodos de pago"

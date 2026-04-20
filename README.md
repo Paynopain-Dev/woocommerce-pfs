@@ -1,10 +1,14 @@
 # Changelog
 
+### 1.6.0
+- Replaced Paylands naming to Paynopain
+- Small visual tweaks
+
 ### 1.5.2
 - Fixed some deprecation warnings.
 - Some logs were not showing up in Paylands API.
 - Fixed profile's mandatory data.
-- Customer identifier will be the email instead of the ID so it's easier to look for in Paylands backoffice.
+- Customer identifier will be the email instead of the ID so it's easier to look for in PaynoPain backoffice.
 
 
 

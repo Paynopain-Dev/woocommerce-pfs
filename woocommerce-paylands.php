@@ -37,12 +37,12 @@ define('PAYLANDS_API_ONBOARDING_LOGS', true);
  */
 define('PAYLANDS_TEST_ONBOARDING_URL', 'https://test-panel-payment-entity.paynopain.com#/auth/business_external_registration/reference/a6b632cd-0c89-4a72-9d1b-28b988db2f5c/partner');
 define('PAYLANDS_TEST_CLIENT_ID', '17_Wq0G7P3ZhNk0e84zC');
-define('PAYLANDS_TEST_CLIENT_SECRET', 'rP8WjkVSW9SiphrBXbiOD5tJtLXRBvZ6yq56HBj6LjL7518CyjzEM9ICb33fmwMG');
+define('PAYLANDS_TEST_CLIENT_SECRET', '05ApqVZJgT1duNyDPAddHtW7THEHKuURhN2SeZNBTYRh6keuYLN4GrtqMCys9wFF');
 define('PAYLANDS_TEST_API_ONBOARDING_URL', 'https://preproduccion.paynopain.com:3443/changeit-wallet-api-payment-entity');
 
 define('PAYLANDS_PRO_ONBOARDING_URL', 'https://accounts.paynopain.com/#/auth/business_external_registration/reference/87f37d42-e4b7-41aa-83a4-7846a910f23f/partner');
 define('PAYLANDS_PRO_CLIENT_ID', '15_i57H76yECmefR8Ge');
-define('PAYLANDS_PRO_CLIENT_SECRET', 'fvUCW6cTYvbokpmfWNyOF5B9hRM6XADKOkNk56jtgPL8no89Dxy31zD3pGzH6t8l');
+define('PAYLANDS_PRO_CLIENT_SECRET', 'SWwp00n5mpx0qeBXlifWF5qoPEF6hp7wd31V4fadmV3gL5bQDOJxoIG00xe246AegYN34nURLoOhnVn8');
 define('PAYLANDS_PRO_API_ONBOARDING_URL', 'https://pfs-accounts-api.paynopain.com');
 
 //mail para enviar los mensajes de soporte
